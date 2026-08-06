@@ -172,17 +172,14 @@ Codeの中身を確認する：
 
 ![](images/Google-Form-Common-17.png)
 - PBS_SPREADSHEET_ID：
-
- 例：以下の[]部分
- https://docs.google.com/spreadsheets/d/[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]/edit..
+  例：以下の[]部分
+  https://docs.google.com/spreadsheets/d/[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]/edit..
 
 - PBS_SPREADSHEET_DATA_NAME：
-
-> Spreadsheetのsheetの名前を「PubCaseFinder-Users-Sheet1」に設定する
+  Spreadsheetのsheetの名前を「PubCaseFinder-Users-Sheet1」に設定する
 
 - PBS_GOOGLEFORM_ID：
-
-> 二の6に記録したgoogle form id をここに設定する
+  二の6に記録したgoogle form id をここに設定する
 
 CodeのCOLNOの部分は、Spreadsheetの各Columnの順番を一致する
 
