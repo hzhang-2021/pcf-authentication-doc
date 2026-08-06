@@ -17,6 +17,7 @@ The authentication flow is as follows:
       |                                          |
       +------------------------------------------+
                 Authentication Result
+```
 
 
 # Prerequisites
