@@ -103,7 +103,8 @@ FormをPublishする。
 ![](images/Google-Form-Common-8.png)  
 このFormのURLを表示して、保存する。「.env」ファイルのGOOGLE_FORM_URL_PCFへ設定する。
 
-
+  
+  
 ## 6.GoogleFormの「onSubmit Trigger」の作成
 
 Google Form側、新規登録くる時、Google はユーザー入力した情報より、Responseを新規作成し、GoogleFormのResponseListとGoogleSpreadsheetのSheetに追加した後、GooleFormとGoogleSpreadsheetの「on Form Submit Trigger」を行う
