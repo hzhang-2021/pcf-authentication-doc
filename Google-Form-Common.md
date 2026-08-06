@@ -1,6 +1,5 @@
-# Sign Up With Google 仕組み
+# 一、Sign Up With Google 仕組み
 
-Googleのアカウントを使ってPubcasefinderサーバへSignUp仕組み
 ![](images/Google-Form-Common-0.PNG)
 
 
@@ -36,43 +35,39 @@ Googleのアカウントを使ってPubcasefinderサーバへSignUp仕組み
 13. 10番のstatus check
     Triggerの実行で、Pubcasefinderサーバから、「退会」したユーザーのResponseIDでGoogleFormの該当ユーザーのResponseを削除する
 
-下に、例として、「https://staging-pubcasefinder.dbcls.jp」サーバのGoogleFormの作成を説明する。
 
-> **二、GoogleFormの作成**
+# 二、例として、下のサーバのGoogleFormの作成を説明する。
+「https://staging-pubcasefinder.dbcls.jp」
 
-1.  Google Formを新規作成
+## 1. Google Formを新規作成
 
 > ご利用のGoogle AccountでログインGoogleへアクセス
 
-![](media/image1.png){width="7.268055555555556in"
-height="6.773611111111111in"}
+![](images/Google-Form-Common-1.png)
 
 「Forms」というGoogle APPをクリックする
 
-![](media/image2.png){width="7.268055555555556in"
-height="6.773611111111111in"}
+![](images/Google-Form-Common-2.png)
 
 「Start a new form」をクリックする
 
-2.  Google Formの設定
 
-![](media/image3.png){width="7.268055555555556in"
-height="6.773611111111111in"}
+## 2. Google Formの設定
+
+![](images/Google-Form-Common-3.png)
 
 「Settings」タブを選択し、「Responses」部分を設定する。
 
 ⁂「Make this a quiz」部分は押さないで
 
-![](media/image4.png){width="7.268055555555556in"
-height="5.1305555555555555in"}
+![](images/Google-Form-Common-4.png)
 
-「Presentation」部分を設定する。特に、Confirmation
-message部分は編集する。
 
-３．GoogleFormのQuestionの作成
+「Presentation」部分を設定する。特に、Confirmation message部分は編集する。
 
-![](media/image5.png){width="7.268055555555556in"
-height="3.717361111111111in"}
+## 3. GoogleFormのQuestionの作成
+
+![](images/Google-Form-Common-5.png)
 
 「Questions」タブを選択、FormのTitleを編集、Formの各Questionを以下の順番で追加する。
 
@@ -106,58 +101,49 @@ height="3.717361111111111in"}
                                                   
   -----------------------------------------------------------------------
 
-![](media/image6.png){width="7.268055555555556in"
-height="6.773611111111111in"}
+![](images/Google-Form-Common-6.png)
 
-特に、「Affiliation email」部分は、下右の三点マックよりResponse
-validationを設定する。
+特に、「Affiliation email」部分は、下右の三点マックよりResponse validationを設定する。
 
-Regular
-expressionは「**\^\[a-zA-Z0-9.\_%+-\]**[**+@\[a-zA-Z0-9.-\]+\\.\[a-zA-Z\]{2,}\$**」、](mailto:+@[a-zA-Z0-9.-]+\.%5ba-zA-Z%5d%7b2,%7d$」、)
+- Regular expression
+- Matches
+- ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+- **Please enter a valid email address!**
 
-メッセージ部分は、「**Please enter a valid email address!**」
+## 4.Google Form のPublish
 
-4.Google Form のPublish
-
-![](media/image7.png){width="7.268055555555556in"
-height="6.773611111111111in"}
+![](images/Google-Form-Common-7.png)
 
 FormをPublishする。
 
-5\. GoogleFormのLink
+## 5. GoogleFormのLink
 
-![](media/image8.png){width="7.268055555555556in"
-height="6.773611111111111in"}
+![](images/Google-Form-Common-8.png)
 
 このFormのURLを表示して、保存する。「.env」ファイルへ設定する。
 
-6.GoogleFormの「onSubmit Trigger」の作成
 
-Google Form側、新規登録くる時、Google
-はユーザー入力した情報より、Responseを新規作成し、GoogleFormのResponseListとGoogleSpreadsheetのSheetに追加した後、GooleFormとGoogleSpreadsheetの「on
-Form Submit Trigger」を行う
+## 6.GoogleFormの「onSubmit Trigger」の作成
 
-ここは、GoogleFormの「onSubmit
-Trigger」を作成する。このTriggerは、該当ResponseのResponseIDをGoogleSpreadsheetのResponseID
-Columnへ保存する処理を行う。
+Google Form側、新規登録くる時、Google はユーザー入力した情報より、Responseを新規作成し、GoogleFormのResponseListとGoogleSpreadsheetのSheetに追加した後、GooleFormとGoogleSpreadsheetの「on Form Submit Trigger」を行う
 
-![](media/image9.png){width="7.268055555555556in"
-height="4.086111111111111in"}
+ここは、GoogleFormの「onSubmit Trigger」を作成する。このTriggerは、該当ResponseのResponseIDをGoogleSpreadsheetのResponseID Columnへ保存する処理を行う。
 
-図面のように、GoogleFormの編集画面を開けて、「google form
-id」を記録し、GAS編集画面を開ける
+![](images/Google-Form-Common-9.png)
 
-![](media/image10.png){width="7.268055555555556in"
-height="4.086111111111111in"}
+図面のように、GoogleFormの編集画面を開けて、「google form id」を記録し、GAS編集画面を開ける
+
+![](images/Google-Form-Common-10.png)
 
 GASに、GithubにPUSHした「static/js/google-form-common.js」で、Scriptを設定する。Google
 SpreadsheetのID、SpreadsheetのSheet名を設定する。COLNOの部分は、SpreadsheetのColumnの順番を一致する。保存。
 
-![](media/image11.png){width="7.268055555555556in" height="3.94375in"}
+![](images/Google-Form-Common-11.png)
 
 onSubmit Triggerを追加
 
-**三、Google Spreadsheetの作成**
+
+# 三、Google Spreadsheetの作成**
 
 1\. Google Form Linked Google Spreadsheetを新規作成
 
