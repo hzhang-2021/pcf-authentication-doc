@@ -155,6 +155,7 @@ ColumnのHeaderへ、以下のColumnを手動で追加する
 
 ## 3. Google Spreadsheet のGASを編集する
 ![](images/Google-Form-Common-15.png)
+
 Spreadsheetの機能を作ります。
 
 
