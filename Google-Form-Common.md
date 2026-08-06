@@ -1,232 +1,292 @@
-# 一、Sign Up With Google 仕組み
+# Google Form サインアップシステム
 
-![](images/Google-Form-Common-0.PNG)
-1.  Userが「Sign Up」をスタート
+## 一、システム仕組み
 
-2.  Flask側、Configファイルに定義されたGoogle Form URLへRedirect
+![システムフロー図](images/Google-Form-Common-0.PNG)
 
-3.  Google Formをユーザー側へ帰す
+### 処理フロー
 
-4.  ユーザーが名前、メールアドレス、Affiliation,JobTitleなど入力して、Submitする
+| ステップ | 処理内容 | 説明 |
+|:---:|---|---|
+| 1 | ユーザー操作 | Userが「Sign Up」をスタート |
+| 2 | Flask処理 | Configファイルに定義されたGoogle Form URLへリダイレクト |
+| 3 | 画面表示 | Google Formをユーザー側へ表示 |
+| 4 | ユーザー入力 | 名前、メールアドレス、Affiliation、JobTitleなど入力してSubmit |
+| 5 | Google Form処理 | ユーザー入力Responseを新規作成し、以下の2箇所に保存：<br>• Google FormのResponseList<br>• Google SpreadsheetのSheet<br><br>さらに以下のTriggerを自動呼出し：<br>• Google Formの「onSubmit Trigger」<br>• Google Spreadsheetの「onSubmit Trigger」<br><br>※ Google FormのTriggerはResponseIDをSpreadsheet該当行に保存 |
+| 6 | Spreadsheet Trigger | GoogleSpreadsheetのSubmit Triggerを実行、Pubcasefinderサーバへユーザー新規追加をリクエスト |
+| 7 | サーバー処理① | Pubcasefinderサーバのインタフェースで新ユーザーをMySQL `user_account` テーブルへ登録、AuthenticationCodeを作成してユーザーのメールアドレスへ認証メールを送信 |
+| 8 | ユーザー操作 | ユーザーが認証メール中のリンクをクリックしてAuthenticationを実施 |
+| 9 | サーバー処理② | PubcasefinderサーバでユーザーのAuthenticationを受けて `Account_auth` テーブルへ登録、ユーザーのメールアドレスへ登録成功のNotificationメールを送信 |
+| 10 | 定期チェック | GoogleSpreadsheetのStatus Check Triggerを実行、定期的にPubcasefinderサーバへAuthentication完了状態を確認 |
+| 11 | 状態管理 | PubcasefinderサーバでユーザーのAuthentication完了、「承認された」、「退会」などの状態変更を記録 |
+| 12 | ユーザー操作 | ユーザーがPubcasefinderのWeb上で「退会」を実施 |
+| 13 | 連携処理 | 10のStatus Check Trigger実行時、Pubcasefinderサーバから「退会」したユーザーのResponseIDを取得し、GoogleFormの該当ユーザーResponseを削除 |
 
-5.  Google
-    Form側、ユーザー入力Responseを新規作成し、情報をGoogleFormのResponseListとGoogle
-    SpreadsheetのSheet、二箇所に保存して、Google Formの「onSubmit Trigger」とGoogleSpreadsheetの「onSubmit Trigger」を自動的に呼び出す。
-    Google Formの「onSubmit Trigger」は、このResponseのResponseIDをGoogle Spreadsheet該当行に保存
+---
 
-6.  GoogleSpreadsheetのSubmit
-    Triggerを実行、Pubcasefinderサーバへユーザー新規追加を投げて
+## 二、Google Form 作成手順
 
-7.  Pubcasefinderサーバのインタフェースです。新ユーザーをMySQLのuser_accountテーブルへ登録、AuthenticationCodeを作成して、ユーザーのメールアドレスへAuthenticationメールを送信
+> 以下、`https://staging-pubcasefinder.dbcls.jp` を例として説明します。
 
-8.  ユーザー側、Authenticationメール中のリンクをクリックして、Authenticationを行います。
+---
 
-9.  Pubcasefinderサーバで、ユーザーのAuthenticationを受けて、Account_authテーブルへ登録。ユーザーのメールアドレスへ登録成功のNotificationメールを送信する。
+### 1. Google Formを新規作成
 
-10. GoogleSpreadsheetのStatus Check
-    Triggerを実行、定期的に、PubcasefinderサーバへAuthentication完了するかを確認する。
+1. ご利用のGoogle AccountでログインしGoogleへアクセス
 
-11. Pubcasefinderサーバで、ユーザーのAuthentication完了、「承認された」、「退会」などの状態変更を記録すする
+   ![Googleログイン](images/Google-Form-Common-1.png)
 
-12. ユーザーがPubcasefinderのWeb上、「退会」を行い
+2. 「Forms」というGoogle APPをクリック
 
-13. 10番のstatus check
-    Triggerの実行で、Pubcasefinderサーバから、「退会」したユーザーのResponseIDでGoogleFormの該当ユーザーのResponseを削除する
+   ![Forms選択](images/Google-Form-Common-2.png)
 
+3. 「Start a new form」をクリック
 
-# 二、例として、下のサーバのGoogleFormの作成を説明する。
-「https://staging-pubcasefinder.dbcls.jp」
+   ![新規フォーム作成](images/Google-Form-Common-3.png)
 
+---
 
+### 2. Google Formの設定
 
-## 1. Google Formを新規作成
+#### Settingsタブの設定
 
-ご利用のGoogle AccountでログインGoogleへアクセス
-![](images/Google-Form-Common-1.png)  
-「Forms」というGoogle APPをクリックする
+![Settings設定](images/Google-Form-Common-4.png)
 
+**Responses部分：**
+- 「Make this a quiz」は**オンにしない**でください
 
-![](images/Google-Form-Common-2.png)  
-「Start a new form」をクリックする
+**Presentation部分：**
+- Confirmation messageを編集する
 
+![Presentation設定](images/Google-Form-Common-5.png)
 
-## 2. Google Formの設定
+---
 
-![](images/Google-Form-Common-3.png)  
-「Settings」タブを選択し、「Responses」部分を設定する。
-⁂「Make this a quiz」部分は押さないで
+### 3. Google FormのQuestion作成
 
+「Questions」タブを選択し、FormのTitleを編集後、以下の順序で質問を追加します。
 
+![Questions作成](images/Google-Form-Common-6.png)
 
-![](images/Google-Form-Common-4.png)  
-「Presentation」部分を設定する。特に、Confirmation message部分は編集する。
+| # | Title | Required | Validation |
+|:-:|---|---|:---:|
+| 1 | Last name (English) | ✅ ON | ❌ NO |
+| 2 | Last name (native language) | ❌ OFF | ❌ NO |
+| 3 | First name (English) | ✅ ON | ❌ NO |
+| 4 | First name (native language) | ❌ OFF | ❌ NO |
+| 5 | Affiliation (English) | ✅ ON | ❌ NO |
+| 6 | Affiliation (native language) | ❌ OFF | ❌ NO |
+| 7 | **Affiliation email** | ✅ ON | ✅ **YES** |
+| 8 | Job title (English) | ✅ ON | ❌ NO |
+| 9 | Job title (native language) | ❌ OFF | ❌ NO |
 
+#### メールアドレス検証設定
 
+「**Affiliation email**」フィールドについては、右下の三点マーク（⋮）より**Response validation**を設定します。
 
-## 3. GoogleFormのQuestionの作成
+![メール検証設定](images/Google-Form-Common-7.png)
 
-![](images/Google-Form-Common-5.png)  
-「Questions」タブを選択、FormのTitleを編集、Formの各Questionを以下の順番で追加する。
-| Title | Required | Validation |
-|-------|:--------:|:----------:|
-| Last name (English) | ON | NO |
-| Last name (native language) | OFF | NO |
-| First name (English) | ON | NO |
-| First name (native language) | OFF | NO |
-| Affiliation (English) | ON | NO |
-| Affiliation (native language) | OFF | NO |
-| Affiliation email | ON | YES |
-| Job title (English) | ON | NO |
-| Job title (native language) | OFF | NO |
+| 設定項目 | 値 |
+|---|---|
+| タイプ | Regular expression |
+| 条件 | Matches |
+| 正規表現 | `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$` |
+| エラーメッセージ | `Please enter a valid email address!` |
 
+---
 
-![](images/Google-Form-Common-6.png)     
-特に、「Affiliation email」部分は、下右の三点マックよりResponse validationを設定する。
-- Regular expression
-- Matches
-- ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
-- Please enter a valid email address!
+### 4. Google Form のPublish
 
+フォームを公開（Publish）します。
 
+![フォーム公開](images/Google-Form-Common-8.png)
 
+Google FormのURLを表示して保存します。
+> 📌 このURLを `.env` ファイルの `GOOGLE_FORM_URL_PCF` へ設定します。
 
-## 4.Google Form のPublish
+---
 
-![](images/Google-Form-Common-7.png)  
-FormをPublishする。
+### 5. URLからGoogle Form IDを取得
 
+![URLからGoogle Form IDを取得](images/Google-Form-Common-9.png)  
+上のように、Google Form IDを取得
 
+---
 
+### 6. Google Formの「onSubmit Trigger」作成
 
-## 5. GoogleFormのLink
+Google Form側で新規登録が発生すると、以下の流れで処理が行われます：
 
-![](images/Google-Form-Common-8.png)  
-このFormのURLを表示して、保存する。「.env」ファイルのGOOGLE_FORM_URL_PCFへ設定する。
+1. Googleがユーザー入力情報よりResponseを新規作成
+2. Google FormのResponseListとGoogle SpreadsheetのSheetに追加
+3. Google FormとGoogle Spreadsheetの「on Form Submit Trigger」を実行
 
-  
-  
-## 6.GoogleFormの「onSubmit Trigger」の作成
+ここでは**Google Formの「onSubmit Trigger」** を作成します。  
+このTriggerは、該当Responseの**ResponseID**をGoogle SpreadsheetのResponseID Columnへ保存します。
 
-Google Form側、新規登録くる時、Google はユーザー入力した情報より、Responseを新規作成し、GoogleFormのResponseListとGoogleSpreadsheetのSheetに追加した後、GooleFormとGoogleSpreadsheetの「on Form Submit Trigger」を行う
+#### 手順
 
-ここは、GoogleFormの「onSubmit Trigger」を作成する。このTriggerは、該当ResponseのResponseIDをGoogleSpreadsheetのResponseID Columnへ保存する処理を行う。
+1. Google Formの編集画面を開き、「google form id」を記録
 
+   ![FormID確認](images/Google-Form-Common-10.png)
 
-![](images/Google-Form-Common-9.png)  
-図面のように、GoogleFormの編集画面を開けて、「google form id」を記録し、GAS編集画面を開ける
+2. GAS編集画面を開く
 
+3. GASに、GithubにPUSHした `static/js/google-form-common.js` でScriptを設定
 
+   ![GAS設定](images/Google-Form-Common-11.png)
 
-![](images/Google-Form-Common-10.png)  
-GASに、GithubにPUSHした「static/js/google-form-common.js」で、Scriptを設定する。Google
-SpreadsheetのID、SpreadsheetのSheet名を設定する。COLNOの部分は、SpreadsheetのColumnの順番を一致する。保存。
+   **設定項目：**
+   - Google SpreadsheetのID
+   - SpreadsheetのSheet名
+   - COLNO（SpreadsheetのColumn順番と一致させる）
 
+4. 保存後、onSubmit Triggerを追加
 
+   ![Trigger追加](images/Google-Form-Common-12.png)
 
-![](images/Google-Form-Common-11.png)  
-onSubmit Triggerを追加
+---
 
+## 三、Google Spreadsheet 作成手順
 
+---
 
+### 1. Google Form連携Spreadsheetを新規作成
 
-# 三、Google Spreadsheetの作成
+フォームに関連するGoogle Spreadsheetを設定します。
 
-## 1. Google Form Linked Google Spreadsheetを新規作成
-![](images/Google-Form-Common-12.png)  
-Formへ関連するGoogle Spreadsheetを設定する。
+![Spreadsheet連携](images/Google-Form-Common-13.png)
 
+Spreadsheetの名前を設定して作成します。
 
-![](images/Google-Form-Common-13.png)  
-Spreadsheetの名前を設定して、作成する
+![Spreadsheet命名](images/Google-Form-Common-14.png)
 
+---
 
+### 2. カラムを新規追加
 
-## 2. Columnを新規追加
-Spreadsheetに自動的作成したColumnの後ろ、追加ColumnのHeaderを設定する。
-![](images/Google-Form-Common-14.png)  
+Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラムを手動で設定します。
 
-ColumnのHeaderへ、以下のColumnを手動で追加する
-- UID
-- AuthenticationCode
-- isEmailValid
-- isRegisted
-- ResponseID
+![カラム追加](images/Google-Form-Common-15.png)
 
+| 追加カラム名 |
+|---|
+| **UID** |
+| **AuthenticationCode** |
+| **isEmailValid** |
+| **isRegisted** |
+| **ResponseID** |
 
+---
 
-## 3. Google Spreadsheet のGASを編集する
-![](images/Google-Form-Common-15.png)  
+### 3. Google Spreadsheet のGASを編集
 
-Spreadsheetの機能を作ります。
+#### GASエディタを開く
 
+![GAS編集](images/Google-Form-Common-16.png)
 
+#### Script設定
 
-![](images/Google-Form-Common-16.png)  
-GASに、GithubにPUSHした「static/js/google-spreadsheet-common.js」で、Scriptを設定する。
-Codeの中身を確認する：
+GASに、GithubにPUSHした `static/js/google-spreadsheet-common.js` でScriptを設定します。
 
-- PUBCASEFINDER_WEB_SERVER:
-  PubcasefinderサーバのURL(例: https://staging-pubcasefinder.dbcls.jp/)を設定する。
+![GAS設定詳細](images/Google-Form-Common-17.png)
 
-- PUBCASEFINDER_WEB_SERVER_SECRET_KEY:
+##### 設定変数一覧
 
-   Pubcasefinderサーバー側「.env」に「GOOGLE_FORM_SECRET_KEY」の値と一致
+| 変数名 | 説明 | 設定例 |
+|---|---|---|
+| `PUBCASEFINDER_WEB_SERVER` | PubcasefinderサーバのURL | `https://staging-pubcasefinder.dbcls.jp/` |
+| `PUBCASEFINDER_WEB_SERVER_SECRET_KEY` | サーバー側`.env`の`GOOGLE_FORM_SECRET_KEY`と一致させる | — |
+| `PBS_SPREADSHEET_ID` | SpreadsheetのID（URLの`[]`部分） | `1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ` |
+| `PBS_SPREADSHEET_DATA_NAME` | Spreadsheetのシート名 | `PubCaseFinder-Users-Sheet1` |
+| `PBS_GOOGLEFORM_ID` | 二-5で記録したGoogle Form ID | — |
 
-![](images/Google-Form-Common-17.png)  
-- PBS_SPREADSHEET_ID： \
-  例：以下の[]部分 \
-  https://docs.google.com/spreadsheets/d/**[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]**/edit..
+![ID設定例](images/Google-Form-Common-18.png)
 
-- PBS_SPREADSHEET_DATA_NAME：
-  Spreadsheetのsheetの名前を「PubCaseFinder-Users-Sheet1」に設定する
+> ⚠️ **注意：** Code内のCOLNOはSpreadsheetの各Columnの順番と一致させる必要があります。
 
-- PBS_GOOGLEFORM_ID：
-  二の6に記録したgoogle form id をここに設定する
+---
 
-CodeのCOLNOの部分は、Spreadsheetの各Columnの順番を一致する
+### 4. Triggerを設定する
 
+![Trigger設定](images/Google-Form-Common-19.png)
 
-## 4. Triggerを設定する
+---
 
-![](images/Google-Form-Common-18.png)  
-Triggerを設定する。
+#### ① onOpen Trigger（メニュー追加用）
 
-### 「onOpen Trigger」: GoogleSpreadsheetの画面にMENUを追加する用
-![](images/Google-Form-Common-19.png)  
+Google Spreadsheetの画面に管理用MENUを追加します。
 
-![](images/Google-Form-Common-20.png)  
+![onOpen Trigger 1](images/Google-Form-Common-20.png)
 
-初めて場合、認証を行います。
-![](images/Google-Form-Common-21.png)  
+![onOpen Trigger 2](images/Google-Form-Common-21.png)
 
-![](images/Google-Form-Common-22.png)  
+##### 初回認証
 
-![](images/Google-Form-Common-23.png)  
+初回実行時は認証が必要です。
 
-![](images/Google-Form-Common-24.png)  
+| 認証手順 | 画面 |
+|---|---|
+| 認証① | ![認証1](images/Google-Form-Common-22.png) |
+| 認証② | ![認証2](images/Google-Form-Common-23.png) |
+| 認証③ | ![認証3](images/Google-Form-Common-24.png) |
+| 認証④ | ![認証4](images/Google-Form-Common-25.png) |
 
-Menu用Triggerを作成しました。
+> ✅ Menu用Triggerが作成されました。
 
-### 「on Form Submit Trigger」の作成
+---
 
-Google Form側、新規登録きっだ場合、データは
+#### ② on Form Submit Trigger
 
-![](images/Google-Form-Common-25.png)  
+Google Form側で新規登録があった場合に実行されます。
 
-![](images/Google-Form-Common-26.png)  
+![Form Submit Trigger 1](images/Google-Form-Common-26.png)
 
-### 「Check Status Trigger」を追加する
+![Form Submit Trigger 2](images/Google-Form-Common-27.png)
 
-このTriggerは、定期的に、Pubcasefinderのサーバから、ユーザーの状態変更を取って、処理を行う。
+---
 
-退会したユーザーは、Google FormのReponseListから、該当Responseを削除処理を行う
+#### ③ Check Status Trigger（定期チェック用）
 
-![](images/Google-Form-Common-27.png)  
+このTriggerは、定期的にPubcasefinderサーバからユーザーの状態変更を取得し処理を行います。
 
-Check Status Triggerを追加. 「Select type of time based trigger」と「Select hour interval」部分は、SpreadsheetからPubcasefinderのサーバへアクセスし、状態変更したのユーザーを取る処理の頻度を定義する。ご自由にお使いください。
+**処理内容：**
+- 退会したユーザーは、Google FormのResponseListから該当Responseを削除
 
+![Status Check Trigger](images/Google-Form-Common-28.png)
 
-### 「Authentication Expiration Check Trigger」を作成
+**設定項目：**
+| 項目 | 説明 |
+|---|---|
+| Select type of time based trigger | 定期実行の間隔タイプを選択 |
+| Select hour interval | 実行間隔（時間）を設定 |
 
-![](images/Google-Form-Common-28.png)  
+> 💡 設定値はご自由に調整してください。
 
+---
+
+#### ④ Authentication Expiration Check Trigger
+
+認証の有効期限をチェックするTriggerです。
+
+![Expiration Check Trigger](images/Google-Form-Common-29.png)
+
+---
+
+## 設定完了
+
+以上で全ての設定が完了です。
+
+### 設定チェックリスト
+
+- [ ] Google Form作成・公開済み
+- [ ] 各Question（9項目）を正しく設定
+- [ ] Affiliation emailにバリデーション設定
+- [ ] .envにGOOGLE_FORM_URL_PCFを設定
+- [ ] Google FormのonSubmit Trigger設定
+- [ ] Spreadsheetに追加カラム（5項目）を追加
+- [ ] SpreadsheetのGAS変数を正しく設定
+- [ ] onOpen Trigger設定（メニュー追加）
+- [ ] on Form Submit Trigger設定
+- [ ] Check Status Trigger設定
+- [ ] Authentication Expiration Check Trigger設定
