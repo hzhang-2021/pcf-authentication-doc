@@ -27,7 +27,7 @@ The authentication flow is as follows:
 
 # 作成
 ## Google OAuth 2.0 Client ID/Secretの作成
-[Google Authentication Design](docs/Google-Auth.docx)
+For more information, see the [Google Authentication Guide](Google-Auth.md).
 
 
 
