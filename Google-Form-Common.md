@@ -209,7 +209,7 @@ ID設定例
 #### ① onOpen Trigger（メニュー追加用）
 
 Google Spreadsheetの画面に管理用MENUを追加します。
-
+![Onopen Trigger](images/Google-Form-Common-19.png)
 
 ##### 初回認証
 
@@ -217,11 +217,11 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 
 | 認証手順 | 画面 |
 |---|---|
-| 認証① | ![認証1](images/Google-Form-Common-19.png) |
-| 認証② | ![認証2](images/Google-Form-Common-20.png) |
-| 認証③ | ![認証3](images/Google-Form-Common-21.png) |
-| 認証④ | ![認証4](images/Google-Form-Common-22.png) |
+| 認証① | ![認証1](images/Google-Form-Common-20.png) |
+| 認証② | ![認証2](images/Google-Form-Common-21.png) |
+| 認証③ | ![認証3](images/Google-Form-Common-22.png) |
 | 認証④ | ![認証4](images/Google-Form-Common-23.png) |
+
 
 ![Form onOpen](images/Google-Form-Common-24.png)
 > ✅ Menu用Triggerが作成されました。
