@@ -35,8 +35,9 @@ The results will be used at the following configuration items:
 
 ## 共通用版ログイン機能用Google FormとSpreadsheetの作成
 For more information, see the [Google Form/Spreadsheet(共通用版)](Google-Form-Common.md)
-
-
+The results will be used at the following configuration items:
+- GOOGLE_FORM_SECRET_KEY
+- GOOGLE_FORM_URL_PCF
 
 ## Panelsearch(Nanybo)ログイン機能用Google FormとSpreadsheetの作成
 [Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.docx)
