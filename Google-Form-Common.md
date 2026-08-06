@@ -145,11 +145,11 @@ Spreadsheetに自動的作成したColumnの後ろ、追加ColumnのHeaderを設
 ![](images/Google-Form-Common-14.png)
 
 ColumnのHeaderへ、以下のColumnを手動で追加する
-### UID
-### AuthenticationCode
-### isEmailValid
-### isRegisted
-### ResponseID
+- UID
+- AuthenticationCode
+- isEmailValid
+- isRegisted
+- ResponseID
 
 
 
