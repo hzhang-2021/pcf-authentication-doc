@@ -69,6 +69,7 @@
 | 5 | 所属機関・部署 | ✅ ON | ❌ NO |
 | 6 | **所属機関のメールアドレス** | ✅ ON | ✅ **YES** |
 | 7 | 職名 | ✅ ON | ❌ NO |
+
 ![Settings設定](images/Google-Form-PSN-5.png)
 
 #### メールアドレス検証設定
