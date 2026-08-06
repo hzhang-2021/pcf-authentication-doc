@@ -34,7 +34,7 @@ The results will be used at the following configuration items:
 
 
 ## 共通用版ログイン機能用Google FormとSpreadsheetの作成
-For more information, see the [Google Form/Spreadsheet(共通用版)](Google-Form-pubcasefinder.md)
+For more information, see the [Google Form/Spreadsheet(共通用版)](Google-Form-Common.md)
 
 
 
