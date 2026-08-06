@@ -1,44 +1,17 @@
-**Sign In with Google for Web**
+# OAuth 2.0 client credentials issued by Google, used for the application's login feature.
 
 [参照文書](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ja)
 
-Googleのアカウントを使ってログインできる仕組み
+#下に、例として、「https://staging-pubcasefinder.dbcls.jp」サーバ用OAuth 2.0 client credentialsの作成を説明する。
 
-事前に[Google API
-Console](https://console.developers.google.com/apis?authuser=1)で認証用のAPIを発行し、Domain名、認証済みのRedirect
-URIとユーザーアクセススコープとテスト用アカウントなど設定し、"client_id"と"client_secret_key"を作成して、uwsgi(app.py)サーバに保存しておく。
+## Google API Consoleの設定
 
-1.  ユーザーがクリックなどの動作で、Google認証を発火する
+### [参照文書](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ja)、[参照文書](https://developers.google.com/identity/gsi/web/guides/overview?authuser=1)
 
-2.  uwsgi側、ユーザーのrequestをもらって、python package
-    authlibの機能を利用して、"client_id"と"client_secret_key"を設定し、Google認証サーバにユーザー認証を転送する。
+1. Projectを新規作成
+ご利用Google AccountでGoogleをログインして、[Google API Console](https://console.developers.google.com/apis?authuser=1)へアクセス
 
-3.  Google認証サーバが直接ユーザーへログインのPromptを返す。
-
-4.  ユーザーとGoogle認証サーバーが認証やりとり。
-
-5.  認証済み、Googleから、事前に設定したuwsgiのURIへCallback、ユーザーのaccess
-    tokenを返す。
-
-6.  uwsgi側が、返したaccess
-    tokenを利用して、Google認証サーバーへユーザー情報(メール)をRequestする。ここで、要求できる項目の範囲は、ユーザーアクセススコープで定義する。
-
-7.  Google認証サーバーがユーザー情報(メール)を返す
-
-8.  uwsgi側、ユーザー情報をもらって、各動作が出来ます。
-
-下に、例として、「https://staging-pubcasefinder.dbcls.jp」サーバ用Google
-Authの作成を説明する。
-
-1.  Google API Consoleの設定
-
-> [参照文書](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ja)、[参照文書](https://developers.google.com/identity/gsi/web/guides/overview?authuser=1)
-
-ご利用Google AccountでGoogleをログインして、　[Google API
-Console](https://console.developers.google.com/apis?authuser=1)へアクセス
-
-![](media/image1.png){width="7.268055555555556in"
-height="2.7847222222222223in"}
+![](images/Google-Auth-1.png.png){width="7.268055555555556in" height="2.7847222222222223in"}
 
 「プロジェクトの選択」ブタンをクリックする
 
