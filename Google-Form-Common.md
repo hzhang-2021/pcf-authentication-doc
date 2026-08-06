@@ -71,35 +71,18 @@
 
 「Questions」タブを選択、FormのTitleを編集、Formの各Questionを以下の順番で追加する。
 
-  -----------------------------------------------------------------------
-  **Title**               **Required**            **Validation**
-  ----------------------- ----------------------- -----------------------
-  Last name (English)     ON                      NO
+| Title | Required | Validation |
+|-------|:--------:|:----------:|
+| Last name (English) | ON | NO |
+| Last name (native language) | OFF | NO |
+| First name (English) | ON | NO |
+| First name (native language) | OFF | NO |
+| Affiliation (English) | ON | NO |
+| Affiliation (native language) | OFF | NO |
+| Affiliation email | ON | YES |
+| Job title (English) | ON | NO |
+| Job title (native language) | OFF | NO |
 
-  Last name (native       OFF                     NO
-  language)                                       
-
-  First name (English)    ON                      NO
-
-  First name (native      OFF                     NO
-  language)                                       
-
-  Affiliation (English)   ON                      NO
-
-  Affiliation (native     OFF                     NO
-  language)                                       
-
-  Affiliation email       ON                      YES
-
-  Job title (English)     ON                      NO
-
-  Job title (native       OFF                     NO
-  language)                                       
-
-                                                  
-
-                                                  
-  -----------------------------------------------------------------------
 
 ![](images/Google-Form-Common-6.png)
 
