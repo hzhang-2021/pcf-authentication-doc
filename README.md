@@ -31,9 +31,10 @@ The authentication flow is as follows:
 
 
 
-
-# 作成
-## Google OAuth 2.0 Client ID/Secretの作成
+\
+\
+# 作成:
+## 一、Google OAuth 2.0 Client ID/Secretの作成
 For more information, see the [Google Authentication Guide](Google-Auth.md). \
 The results will be used at the following configuration items:
 - GOOGLE_CLIENT_ID
@@ -43,7 +44,7 @@ The results will be used at the following configuration items:
 
 
 
-## 共通用版ログイン機能用Google FormとSpreadsheetの作成
+## 二、共通用版ログイン機能用Google FormとSpreadsheetの作成
 For more information, see the [Google Form/Spreadsheet(共通用版)](Google-Form-Common.md) \
 The results will be used at the following configuration items:
 - GOOGLE_FORM_SECRET_KEY
@@ -52,13 +53,13 @@ The results will be used at the following configuration items:
 
 
 
-## Panelsearch(Nanybo)ログイン機能用Google FormとSpreadsheetの作成
+## 三、Panelsearch(Nanybo)ログイン機能用Google FormとSpreadsheetの作成
 For more information, see the[Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.docx) \
 The results will be used at the following configuration items:
 - GOOGLE_FORM_URL_PSN
 
 
-## Google SMTP送信用アカウントとアプリパスワード
+## 四、Google SMTP送信用アカウントとアプリパスワード
 [Google SMTP送信用アカウントとアプリパスワード](Gmail-SMTP.pptx)
 
 
