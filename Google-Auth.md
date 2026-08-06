@@ -1,17 +1,16 @@
 # OAuth 2.0 client credentials issued by Google, used for the application's login feature.
 
 [参照文書](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ja)
+[参照文書](https://developers.google.com/identity/gsi/web/guides/overview?authuser=1)
 
-#下に、例として、「https://staging-pubcasefinder.dbcls.jp」サーバ用OAuth 2.0 client credentialsの作成を説明する。
+# 下に、例として、「https://staging-pubcasefinder.dbcls.jp」サーバ用OAuth 2.0 client credentialsの作成を説明する。
 
 ## Google API Consoleの設定
-
-### [参照文書](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ja)、[参照文書](https://developers.google.com/identity/gsi/web/guides/overview?authuser=1)
 
 1. Projectを新規作成
 ご利用Google AccountでGoogleをログインして、[Google API Console](https://console.developers.google.com/apis?authuser=1)へアクセス
 
-![](images/Google-Auth-1.png.png){width="7.268055555555556in" height="2.7847222222222223in"}
+![](images/Google-Auth-1.png){width="7.268055555555556in" height="2.7847222222222223in"}
 
 「プロジェクトの選択」ブタンをクリックする
 
