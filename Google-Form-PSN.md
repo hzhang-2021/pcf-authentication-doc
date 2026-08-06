@@ -1,227 +1,248 @@
-# Google Form 登録システム - Pubcasefinder
+# Google Form サインアップシステム（Panelsearch/Nanbyo 版）
 
-## 概要
+## 一、システム仕組み
 
-本ドキュメントでは、Google Form を利用した Pubcasefinder サーバーのサインアップシステムの実装について説明します。
+![システムフロー図](images/Google-Form-PSN-0.png)
 
----
+### 処理フロー
 
-## システムアーキテクチャ
-
-### ユーザー登録フロー
-
-```mermaid
-graph TD
-    A[ユーザーが Sign Up をクリック] --> B[Flask が Google Form URL へリダイレクト]
-    B --> C[Google Form を表示]
-    C --> D[ユーザーがデータを入力して送信]
-    D --> E[データを Google Spreadsheet に保存]
-    E --> F[Submit Trigger を実行]
-    F --> G[MySQL Account_auth テーブルに新規ユーザーを登録]
-    G --> H[認証コードを生成]
-    H --> I[ユーザーに認証メールを送信]
-    I --> J[ユーザーがメールのリンクをクリック]
-    J --> K[認証を確認]
-    K --> L[定期チェック Trigger を実行]
-    L --> M[管理者に通知メールを送信]
-    M --> N[管理者が登録を審査]
-    N --> O[管理者がユーザーを承認または拒否]
-
-```
+| ステップ | 処理内容 | 説明 |
+|:---:|---|---|
+| 1 | ユーザー操作 | Userが「Sign Up」をスタート |
+| 2 | Flask処理 | Configファイルに定義されたGoogle Form URLへリダイレクト |
+| 3 | 画面表示 | Google Formをユーザー側へ表示 |
+| 4 | ユーザー入力 | 名前、メールアドレス、Affiliation、JobTitle、Groupなどを入力してSubmit |
+| 5 | Google Form処理 | Google Form側情報を保存し、Google Spreadsheetの「Submit Trigger」を自動呼出し |
+| 6 | Spreadsheet Trigger | Google SpreadsheetのSubmit Triggerを実行、Pubcasefinderサーバへユーザー新規追加をリクエスト、AuthenticationCodeを取得しユーザーへ認証メール送信 |
+| 7 | サーバー処理① | Pubcasefinderサーバのインタフェースで新ユーザーをMySQL `Account_auth` テーブルへ登録、AuthenticationCodeを作成してGoogleSpreadsheetへ返却 |
+| 8 | ユーザー操作 | ユーザーが認証メール中のリンクをクリックしてAuthenticationを実施 |
+| 9 | サーバー処理② | PubcasefinderサーバでユーザーのAuthenticationを受けて `Account_auth` テーブルへ登録 |
+| 10 | 定期チェック① | Google SpreadsheetのAuthentication Check Triggerを実行、定期的にPubcasefinderサーバへAuthentication完了状態を確認。完了したものがあれば管理者へNotificationメール送信 |
+| 11 | 状態確認 | PubcasefinderサーバのインタフェースでユーザーのAuthentication状態を返す |
+| 12 | 管理者審査 | 管理者がNotificationメールを受信、Google Spreadsheetのサイトへアクセスし、画面のMenuより新規ユーザー登録をYES/NOで判定 |
+| 13 | 管理者決定 | Google SpreadsheetのMenu機能で管理者の決定を実行、Pubcasefinderサーバとユーザーへ反映 |
+| 14 | 登録完了 | ユーザー登録または拒否が完了 |
 
 ---
 
-## 第2段（共6段）
+## 二、Google Form 作成手順（Panelsearch/Nanbyo 用）
 
-```markdown
-### ステップ 3：質問を作成
-
-**Questions** タブを選択し、以下の順序で質問を追加します：
-
-| タイトル | 必須 | 検証 |
-|------|------|------|
-| 苗字 | ON | なし |
-| Last name (English) | ON | なし |
-| 名前 | ON | なし |
-| First name (English) | ON | なし |
-| 所属機関・部署 | ON | なし |
-| **所属機関のメールアドレス** | ON | **あり** |
-| 職名 | ON | なし |
-
-![質問設定](media/image5.png)
-
-### ステップ 4：メール検証の設定
-
-**「所属機関のメールアドレス」** フィールドについて：
-
-1. 右下の三点マーク（⋮）をクリック
-2. **Response validation** を選択
-
-![メール検証設定](media/image6.png)
-
-以下のように設定します：
-- **正規表現**：`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
-- **エラーメッセージ**：`Please enter a valid email address!`
-
-![メール検証詳細](media/image7.png)
-
-### ステップ 5：公開して URL を取得
-
-1. フォームを **公開**
-2. フォーム URL をコピーして保存
-3. `.env` 設定ファイルに追加
-
-![フォーム公開](media/image8.png)
-
-![フォーム URL 取得](media/image9.png)
+> 以下、`https://staging-pubcasefinder.dbcls.jp` サーバの panelsearch(nanbyo) 用を例として説明します。
 
 ---
 
-## Google Spreadsheet 設定
+### 1. Google Formを新規作成
 
-### ステップ 1：関連スプレッドシートを作成
+ご利用のGoogle AccountでログインしGoogleへアクセス
 
-1. フォームを Google Spreadsheet にリンク
-2. スプレッドシート名を設定して作成
+   ![Googleログイン](images/Google-Form-PSN-1.png)
+「Forms」というGoogle APPをクリック
 
-![スプレッドシート連携](media/image10.png)
+   ![Forms選択](images/Google-Form-PSN-2.png)
+「Start a new form」をクリック
 
-![スプレッドシート命名](media/image11.png)
+---
 
-### ステップ 2：必要な列を追加
+### 2. Google Formの設定
 
-以下の列を手動でヘッダーに追加します：
+#### Settingsタブの設定
 
-| 列名 |
-|------|
+**Responses部分：**
+- 「Make this a quiz」は**オンにしない**でください
+![新規フォーム作成](images/Google-Form-PSN-3.png)
+
+
+**Presentation部分：**
+- Confirmation messageを編集する
+![Settings設定](media/images/Google-Form-PSN-4.png)
+
+---
+
+### 3. Google FormのQuestion作成
+
+「Questions」タブを選択し、FormのTitleを編集後、以下の順序で質問を追加します。
+| # | Title | Required | Validation |
+|:-:|---|---|:---:|
+| 1 | 苗字 | ✅ ON | ❌ NO |
+| 2 | Last name (English) | ✅ ON | ❌ NO |
+| 3 | 名前 | ✅ ON | ❌ NO |
+| 4 | First name (English) | ✅ ON | ❌ NO |
+| 5 | 所属機関・部署 | ✅ ON | ❌ NO |
+| 6 | **所属機関のメールアドレス** | ✅ ON | ✅ **YES** |
+| 7 | 職名 | ✅ ON | ❌ NO |
+![Settings設定](media/images/Google-Form-PSN-5.png)
+
+#### メールアドレス検証設定
+
+「**所属機関のメールアドレス**」フィールドについては、右下の三点マーク（⋮）より**Response validation**を設定します。
+![Settings設定](media/images/Google-Form-PSN-6.png)
+
+| 設定項目 | 値 |
+|---|---|
+| タイプ | Regular expression |
+| 条件 | Matches |
+| 正規表現 | `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$` |
+| エラーメッセージ | `Please enter a valid email address!` |
+
+---
+
+### 4. Google Form のPublish
+
+フォームを公開（Publish）します。
+![Settings設定](media/images/Google-Form-PSN-7.png)
+
+---
+
+### 5. Google FormのURL取得
+
+フォームのURLを表示して保存します。
+![Settings設定](media/images/Google-Form-PSN-8.png)
+
+> 📌 このURLを `.env` ファイルのGOOGLE_FORM_URL_PSNへ設定します。
+
+---
+
+## 三、Google Spreadsheet 作成手順
+
+---
+
+### 1. Google Form連携Spreadsheetを新規作成
+
+フォームに関連するGoogle Spreadsheetを設定します。
+![Settings設定](media/images/Google-Form-PSN-9.png)
+
+Spreadsheetの名前を設定して作成します。
+![Settings設定](media/images/Google-Form-PSN-10.png)
+
+---
+
+### 2. カラムを新規追加
+
+Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラムを手動で設定します。
+
+| 追加カラム名 |
+|---|
 | **UID** |
 | **AuthenticationCode** |
 | **isEmailValid** |
 | **isRegisted** |
 
-![追加した列](media/image12.png)
+![Settings設定](media/images/Google-Form-PSN-11.png)
 
-### ステップ 3：Google Apps Script を設定
-
-スプレッドシートのメニューからスクリプトエディタにアクセス：
-
-![スクリプトエディタ](media/image13.png)
-
-#### 設定変数
-
-GAS スクリプト（`static/js/panelsearch_nanbyo/google-spreadsheet-panelsearch-nanbyo.js`）に以下の変数を設定：
-
-| 変数 | 説明 |
-|------|------|
-| `PUBCASEFINDER_WEB_SERVER` | Pubcasefinder サーバー URL（例：`https://staging-pubcasefinder.dbcls.jp/`） |
-| `PUBCASEFINDER_WEB_SERVER_SECRET_KEY` | サーバー側 `.env` の `GOOGLE_FORM_SECRET_KEY` と一致させる |
-
-![サーバー設定](media/image14.png)
-
-| 変数 | 説明 |
-|------|------|
-| `PBS_SPREADSHEET_ID` | スプレッドシート URL の ID（赤色部分）：`https://docs.google.com/spreadsheets/d/1kss4hHDajL0dxoeXO8qO8hpUruElcsdt_61RNMhqvFo/edit..` |
-| `PBS_SPREADSHEET_DATA_NAME` | シート名：`PubCaseFinder-PanelSearch-Users-Sheet1` |
-
-![スプレッドシート設定](media/image15.png)
-
-| 変数 | 説明 |
-|------|------|
-| `COLNO_XXX` | 各列番号をスプレッドシートの位置と一致させる |
-| `NOTIFICATION_MAIL_ACCOUNT` | 通知用管理者メールアドレス |
-
-![通知設定](media/image16.png)
+> ✅ 追加したColumnを確認します。
 
 ---
 
-## トリガー設定
+### 3. Google Spreadsheet のGASを編集
 
-### ステップ 1：管理者メニュートリガー
+#### GASエディタを開く
+![Settings設定](media/images/Google-Form-PSN-12.png)
 
-管理者メニュー機能のトリガーを作成：
+#### Script設定
 
-![管理者メニュートリガー](media/image17.png)
+GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-panelsearch-nanbyo.js` でScriptを設定します。
+![Settings設定](media/images/Google-Form-PSN-13.png)
 
-![メニュートリガー追加](media/image18.png)
+##### 設定変数一覧
 
-### ステップ 2：認証
+| 変数名 | 説明 | 設定例 |
+|---|---|---|
+| `PUBCASEFINDER_WEB_SERVER` | PubcasefinderサーバのURL | `https://staging-pubcasefinder.dbcls.jp/` |
+| `PUBCASEFINDER_WEB_SERVER_SECRET_KEY` | サーバー側`.env`の`GOOGLE_FORM_SECRET_KEY`と一致させる | — |
+| `PBS_SPREADSHEET_ID` | SpreadsheetのID（URLの赤色部分） | `1kss4hHDajL0dxoeXO8qO8hpUruElcsdt_61RNMhqvFo` |
+| `PBS_SPREADSHEET_DATA_NAME` | Spreadsheetのシート名 | `PubCaseFinder-PanelSearch-Users-Sheet1` |
+| `COLNO_XXX` | Spreadsheetの各Columnの順番と一致させる | — |
+| `NOTIFICATION_MAIL_ACCOUNT` | 通知用管理者Emailアドレス | — |
 
-初回実行時は、認証が必要です：
+![Settings設定](media/images/Google-Form-PSN-13.png)  
+![Settings設定](media/images/Google-Form-PSN-14.png)  
+![Settings設定](media/images/Google-Form-PSN-15.png)  
 
-![認証 1](media/image19.png)
-
-![認証 2](media/image20.png)
-
-![認証 3](media/image21.png)
-
-![認証 4](media/image22.png)
-
-### ステップ 3：フォーム送信トリガー
-
-Google Form 送信時のトリガーを作成：
-
-![フォーム送信トリガー](media/image23.png)
-
-![フォーム送信トリガー設定](media/image24.png)
-
-### ステップ 4：ステータスチェックトリガー
-
-認証状態を定期的にチェックするトリガーを作成：
-
-![ステータスチェックトリガー](media/image25.png)
-
-### ステップ 5：管理者通知トリガー
-
-管理者に通知メールを送信するトリガーを作成：
-
-![通知トリガー](media/image26.png)
-
-### ステップ 6：認証期限切れチェックトリガー
-
-認証の有効期限をチェックするトリガーを作成：
-
-![期限切れチェックトリガー](media/image27.png)
+> ⚠️ **注意：** Code内のCOLNOはSpreadsheetの各Columnの順番と一致させる必要があります。
 
 ---
 
-## 最終ステップ
+### 4. Triggerを設定する
 
-✅ すべてのトリガーが設定されました  
-✅ Google Form URL を記録して保存  
-✅ URL を `.env` 設定ファイルに追加
-
-```env
-# .env 設定例
-GOOGLE_FORM_URL=https://docs.google.com/forms/d/your-form-id/viewform
-GOOGLE_FORM_SECRET_KEY=your-secret-key
+![Settings設定](media/images/Google-Form-PSN-16.png)
 
 ---
 
-## 第6段（共6段）
+#### ① onOpen Trigger（メニュー追加用）
 
-```markdown
-## 付録：画像ファイルについて
+Google Spreadsheetの画面に管理用MENUを追加します。
 
-本ドキュメントで参照している画像ファイル（`media/image1.png` ～ `media/image27.png`）は、元の Word 文書から抽出した画像を配置するディレクトリです。
+![Settings設定](media/images/Google-Form-PSN-17.png)
 
-画像を適切に配置するには：
+##### 初回認証
 
-1. 元の Word 文書（`Google-Form-PSN.docx`）から画像を抽出
-2. `media/` フォルダを作成
-3. 抽出した画像を `image1.png` ～ `image27.png` としてリネームして配置
+初回実行時は認証が必要です。
 
-または、元の Word 文書をそのまま参照することも可能です。
+| 認証手順 | 画面 |
+|---|---|
+| 認証① | ![認証1](images/Google-Form-PSN-18.png) |
+| 認証② | ![認証2](images/Google-Form-PSN-19.png) |
+| 認証③ | ![認証3](images/Google-Form-PSN-20.png) |
+| 認証④ | ![認証4](images/Google-Form-PSN-21.png) |
+
+![onOpen](images/Google-Form-PSN-22.png) 
+
+> ✅ Menu用Triggerが作成されました。
+
 
 ---
 
-## 変更履歴
+#### ② on Form Submit Trigger
 
-| 日付 | バージョン | 変更内容 |
-|------|-----------|----------|
-| 2026-08-06 | 1.0 | 初版作成（Word から Markdown へ変換） |
+Google Form送信時のTriggerを作成します。
+
+![onOpen](images/Google-Form-PSN-23.png)
+
+![onOpen](images/Google-Form-PSN-24.png)
 
 ---
 
-## ライセンス
+#### ③ Check Status Trigger（定期チェック用）
 
-本ドキュメントは Pubcasefinder プロジェクトの一部として提供されます。
+Status Check Triggerを作成します。
+
+![onOpen](images/Google-Form-PSN-25.png)
+
+---
+
+#### ④ 管理者通知メール送信Trigger
+
+管理者へNotificationメールを送信するTriggerを作成します。
+
+![onOpen](images/Google-Form-PSN-26.png)
+
+---
+
+#### ⑤ Authentication Expiration Check Trigger
+
+ユーザー認証の有効期限をチェックするTriggerを作成します。
+
+![onOpen](images/Google-Form-PSN-27.png)
+
+---
+
+## 設定完了
+
+✅ すべてのTriggerが設定されました  
+✅ Google FormのURLを記録して、`.env`設定ファイルに設定します
+
+### 設定チェックリスト
+
+- [ ] Google Form作成・公開済み
+- [ ] 各Question（7項目）を正しく設定
+- [ ] 所属機関のメールアドレスにバリデーション設定
+- [ ] .envにGoogle Form URLを設定
+- [ ] Spreadsheetに追加カラム（4項目）を追加
+- [ ] SpreadsheetのGAS変数を正しく設定
+- [ ] onOpen Trigger設定（メニュー追加）
+- [ ] on Form Submit Trigger設定
+- [ ] Check Status Trigger設定
+- [ ] 管理者通知メール送信Trigger設定
+- [ ] Authentication Expiration Check Trigger設定
+
+
