@@ -5,38 +5,34 @@
 
 # 下に、例として、「https://staging-pubcasefinder.dbcls.jp」サーバ用OAuth 2.0 client credentialsの作成を説明する。
 
-## Google API Consoleの設定
-
-1. Projectを新規作成
+## Projectを新規作成
 ご利用Google AccountでGoogleをログインして、[Google API Console](https://console.developers.google.com/apis?authuser=1)へアクセス
 
-![](images/Google-Auth-1.png){width="7.268055555555556in"
-height="2.7847222222222223in"}
+![](images/Google-Auth-1.png)
 
 「プロジェクトの選択」ブタンをクリックする
 
-![](media/image2.png){width="7.268055555555556in"
-height="5.134722222222222in"}
+![](images/Google-Auth-2.png)
 
 「NEW PROJECT」ブタンをクリックする
 
-![](media/image3.png){width="7.268055555555556in"
-height="3.1041666666666665in"}「project
-name」に任意の名前を入力し、「CREATE」ボタンをクリックする
+![](images/Google-Auth-3.png)
+「project name」に任意の名前を入力し、「CREATE」ボタンをクリックする
 
-![](media/image4.png){width="7.268055555555556in"
-height="5.134722222222222in"}
+![](images/Google-Auth-4.png)
 
 上に作成したプロジェクトを確認する。
 
+
+## Authentication consentの設定
+![](images/Google-Auth-4.png)
 左側「API & Services」リストに「OAuth consent screen」をクリックする。
 
 「外部」を選択し、「作成」ボタンをクリックする。
 
 「アプリ登録の編集」画面へ遷移する。
 
-![](media/image5.png){width="7.268055555555556in"
-height="5.527777777777778in"}
+![](images/Google-Auth-5.png)
 
 「アプリ名」に名前を決めて入力。
 
@@ -44,13 +40,11 @@ height="5.527777777777778in"}
 
 したにスクロールする
 
-![](media/image6.png){width="7.268055555555556in"
-height="5.490277777777778in"}
+![](images/Google-Auth-6.png)
 
 「アプリケーションのホームページ」にサーバーのURLを入力する。
 
-「application privacy policy link」と「Application terms of service
-link」に各URLを入力
+「application privacy policy link」と「Application terms of service link」に各URLを入力
 
 「+ドメインの追加」ボタンクリックし、ドメイン名を入力する。
 
@@ -58,75 +52,61 @@ link」に各URLを入力
 
 「保存して次へ」ボタンをクリックし、「スコープ」編集画面へ遷移する。
 
-![](media/image7.png){width="7.268055555555556in"
-height="5.490277777777778in"}
+![](images/Google-Auth-7.png)
 
 「スコープを追加または削除」ボタンをクリック
 
-![](media/image8.png){width="7.268055555555556in" height="6.30625in"}
+![](images/Google-Auth-8.png)
 
 「.../auth/userinfo.email」、「.../auth/userinfo.profile」、「openid」を選択する。
 
 「更新」ボタンをクリックする。
 
-![](media/image9.png){width="7.268055555555556in" height="6.30625in"}
+![](images/Google-Auth-9.png)
 
 「保存して次へ」ボタンをクリックする。
 
-![](media/image10.png){width="7.268055555555556in"
-height="7.8597222222222225in"}
+![](images/Google-Auth-10.png)
 
 登録した内容は確認して「ダッシュボードに戻る」ボタンをクリック
 
-![](media/image11.png){width="7.268055555555556in"
-height="3.298611111111111in"}
+![](images/Google-Auth-11.png)
 
 「認証情報」をクリック
 
-![](media/image12.png){width="7.268055555555556in"
-height="4.1506944444444445in"}
+![](images/Google-Auth-12.png)
 
 「認証情報の作成」をクリック
 
-![](media/image13.png){width="7.268055555555556in"
-height="4.1506944444444445in"}
+![](images/Google-Auth-13.png)
 
 「OAuthクライアントID」をクリック
 
-![](media/image14.png){width="7.268055555555556in"
-height="4.1506944444444445in"}
+![](images/Google-Auth-14.png)
 
 「アプリケーションの種類」に「ウェブアプリケーション」をクリック
 
-![](media/image15.png){width="7.268055555555556in"
-height="6.279861111111111in"}
+![](images/Google-Auth-15.png)
 
 「Name」に任意の名前を入力
 
-「Authorized JavaScript orgins」と「Authorized redirect
-URIs」にサーバURIを設定し「作成」ボタンをクリック。
+「Authorized JavaScript orgins」と「Authorized redirect URIs」にサーバURIを設定し「作成」ボタンをクリック。
 
-![](media/image16.png){width="7.268055555555556in"
-height="6.279861111111111in"}
+![](images/Google-Auth-16.png)
 
 ここで、"client_id"と"client_secret_key"を作成する。
 
-![](media/image17.png){width="7.268055555555556in"
-height="6.279861111111111in"}
+![](images/Google-Auth-17.png)
 
 「OAuth consent screen」を選択。
 
 Publishing
-statusはTestingになっています。外部ユーザー利用できるため、「PUBLISH
-APP」ブタンをクリック
+statusはTestingになっています。外部ユーザー利用できるため、「PUBLISH APP」ブタンをクリック
 
-![](media/image18.png){width="7.268055555555556in"
-height="6.279861111111111in"}
+![](images/Google-Auth-18.png)
 
 「CONFIRM」する
-
-![](media/image19.png){width="7.268055555555556in"
-height="6.279861111111111in"}
+![](images/Google-Auth-19.png)
 
 Publishing statusは現在、「in
 production」になります。それで、Google側の認証サービスは準備できました。
