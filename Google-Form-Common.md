@@ -132,16 +132,15 @@ Google Form側で新規登録が発生すると、以下の流れで処理が行
 
 3. GASに、GithubにPUSHした `static/js/google-form-common.js` でScriptを設定
 
-   ![GAS設定](images/Google-Form-Common-11.png)
-
-   **設定項目：**
+   **合わせる項目：**
    - Google SpreadsheetのID
    - SpreadsheetのSheet名
    - COLNO（SpreadsheetのColumn順番と一致させる）
 
 4. 保存後、onSubmit Triggerを追加
 
-   ![Trigger追加](images/Google-Form-Common-12.png)
+   ![GAS設定](images/Google-Form-Common-11.png)
+
 
 ---
 
@@ -152,6 +151,7 @@ Google Form側で新規登録が発生すると、以下の流れで処理が行
 ### 1. Google Form連携Spreadsheetを新規作成
 
 フォームに関連するGoogle Spreadsheetを設定します。
+![Trigger追加](images/Google-Form-Common-12.png)
 
 ![Spreadsheet連携](images/Google-Form-Common-13.png)
 
