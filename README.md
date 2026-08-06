@@ -27,7 +27,7 @@ The authentication flow is as follows:
 * Domain Name of the Flask Server(例：https://staging-pubcasefinder.dbcls.jp)
 * Google Account(Google Auth credentials, Google FormとSpreadsheet作成用)
 * Google SMTP送信用アカウントとアプリパスワード
-
+* GOOGLE_FORM_SECRET_KEY(from flask configure file(.env))
 
 
 
@@ -47,7 +47,6 @@ The results will be used at the following configuration items:
 ## 二、共通用版ログイン機能用Google FormとSpreadsheetの作成
 For more information, see the [Google Form/Spreadsheet(共通用版)](Google-Form-Common.md) \
 The results will be used at the following configuration items:
-- GOOGLE_FORM_SECRET_KEY
 - GOOGLE_FORM_URL_PCF
 
 
