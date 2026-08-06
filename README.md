@@ -1,56 +1,27 @@
-1.  Google Auth, Google Form, Google Spreadsheetの準備
+# PubCaseFinder Authentication
+This document describes how to add Google Authentication (OAuth 2.0) to a Flask web application.
 
-- 「google-auth/Google-Auth.docx」にしたがって、Google Authentication
-  APPを作って、"**client_id**"と"client_secret_key"を記録
 
-- 「google-form/Common/Google-Form-pubcasefinder.docx」にしたがって、DiseaseSearch,
-  Casesharing, Panelsearch共通用Googleformを作って、URLを記録
 
-- 「google-form/Panelsearch-nanbyo/Google-Form-PSN.docx」にしたがって、Panelsearch(nanbyo)用Google
-  Formを作って、URLを記録
+# Overview
 
-> 注意事項：
->
-> 　サーバ名は「staging-pubcasefinder.dbcls.jp」と予想されていますが、違い場合、一致する
+Google Authentication allows users to sign in using their Google accounts instead of creating a separate username and password.
 
-2.  Google SMTPサーバーでメール送信用アカウントとアプリパスワードの準備
+The authentication flow is as follows:
 
-> やりかたは、以下の資料を参考
->
-> 「google-smtp/ GmailのSMTPサーバーへの認証方法.pptx」
+```text
++--------+        +----------------+        +----------------+
+| Browser| -----> | Flask Server   | -----> | Google OAuth   |
++--------+        +----------------+        +----------------+
+      ^                                          |
+      |                                          |
+      +------------------------------------------+
+                Authentication Result
 
-3\. Githubの「dev」branchより、DockerのDLと立ち上がり
 
-Configファイル(template.env)に新規追加項目について
+# Prerequisites
+* Domain Name of the Flask Server(例：https://staging-pubcasefinder.dbcls.jp)
+* Google Account(Google Auth, Google FormとGoogle Spreadsheet作成用)
+* Google SMTP送信用アカウントとアプリパスワード
 
-+------------------------+----------------------------------------------------------------------+
-| 項目                   | 説明                                                                 |
-+========================+======================================================================+
-| GOOGLE_DISCOVERY_URL   | https://accounts.google.com/.well-known/openid-configuration         |
-+------------------------+----------------------------------------------------------------------+
-| GOOGLE_CLIENT_ID       | Google Auth用                                                        |
-+------------------------+----------------------------------------------------------------------+
-| GOOGLE_CLIENT_SECRET   | Google Auth用                                                        |
-+------------------------+----------------------------------------------------------------------+
-| GOOGLE_FORM_SECRET_KEY | 任意長さ４０以下の文字列。Google                                     |
-|                        | Spreadsheet　code中「PUBCASEFINDER_WEB_SERVER_SECRET_KEY」の値と一致 |
-|                        |                                                                      |
-|                        | 例: 58b05930-bbaf-45f9-b96c-05df7b53f23e                             |
-+------------------------+----------------------------------------------------------------------+
-| GOOGLE_FORM_URL_PCF    | 共通用Google FormのURL                                               |
-+------------------------+----------------------------------------------------------------------+
-| GOOGLE_FORM_URL_PSN    | Panelsearch(nanbyo)用Google FormのURL                                |
-+------------------------+----------------------------------------------------------------------+
-| MAIL_SMTP_SERVER       | smtp.gmail.com                                                       |
-+------------------------+----------------------------------------------------------------------+
-| MAIL_SMTP_PORT         | 587                                                                  |
-+------------------------+----------------------------------------------------------------------+
-| MAIL_FROM_NAME         | 送信メールヘッダー部分, 送信者名として,自由に設定する                |
-+------------------------+----------------------------------------------------------------------+
-| MAIL_FROM_EMAIL        | 送信メールヘッダー部分, 送信者メールとして,自由に設定する            |
-+------------------------+----------------------------------------------------------------------+
-| MAIL_USERNAME          | Google SMTP送信用アカウント                                          |
-+------------------------+----------------------------------------------------------------------+
-| MAIL_PASSWORD          | Google SMTP送信用アプリパスワード                                    |
-+------------------------+----------------------------------------------------------------------+
 
