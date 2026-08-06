@@ -53,7 +53,7 @@
 
 **Presentation部分：**
 - Confirmation messageを編集する
-![Settings設定](media/images/Google-Form-PSN-4.png)
+![Settings設定](images/Google-Form-PSN-4.png)
 
 ---
 
@@ -69,12 +69,12 @@
 | 5 | 所属機関・部署 | ✅ ON | ❌ NO |
 | 6 | **所属機関のメールアドレス** | ✅ ON | ✅ **YES** |
 | 7 | 職名 | ✅ ON | ❌ NO |
-![Settings設定](media/images/Google-Form-PSN-5.png)
+![Settings設定](images/Google-Form-PSN-5.png)
 
 #### メールアドレス検証設定
 
 「**所属機関のメールアドレス**」フィールドについては、右下の三点マーク（⋮）より**Response validation**を設定します。
-![Settings設定](media/images/Google-Form-PSN-6.png)
+![Settings設定](images/Google-Form-PSN-6.png)
 
 | 設定項目 | 値 |
 |---|---|
@@ -88,14 +88,14 @@
 ### 4. Google Form のPublish
 
 フォームを公開（Publish）します。
-![Settings設定](media/images/Google-Form-PSN-7.png)
+![Settings設定](images/Google-Form-PSN-7.png)
 
 ---
 
 ### 5. Google FormのURL取得
 
 フォームのURLを表示して保存します。
-![Settings設定](media/images/Google-Form-PSN-8.png)
+![Settings設定](images/Google-Form-PSN-8.png)
 
 > 📌 このURLを `.env` ファイルのGOOGLE_FORM_URL_PSNへ設定します。
 
@@ -108,10 +108,10 @@
 ### 1. Google Form連携Spreadsheetを新規作成
 
 フォームに関連するGoogle Spreadsheetを設定します。
-![Settings設定](media/images/Google-Form-PSN-9.png)
+![Settings設定](images/Google-Form-PSN-9.png)
 
 Spreadsheetの名前を設定して作成します。
-![Settings設定](media/images/Google-Form-PSN-10.png)
+![Settings設定](images/Google-Form-PSN-10.png)
 
 ---
 
@@ -126,7 +126,7 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 | **isEmailValid** |
 | **isRegisted** |
 
-![Settings設定](media/images/Google-Form-PSN-11.png)
+![Settings設定](images/Google-Form-PSN-11.png)
 
 > ✅ 追加したColumnを確認します。
 
@@ -135,12 +135,12 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 ### 3. Google Spreadsheet のGASを編集
 
 #### GASエディタを開く
-![Settings設定](media/images/Google-Form-PSN-12.png)
+![Settings設定](images/Google-Form-PSN-12.png)
 
 #### Script設定
 
 GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-panelsearch-nanbyo.js` でScriptを設定します。
-![Settings設定](media/images/Google-Form-PSN-13.png)
+![Settings設定](images/Google-Form-PSN-13.png)
 
 ##### 設定変数一覧
 
@@ -153,9 +153,9 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 | `COLNO_XXX` | Spreadsheetの各Columnの順番と一致させる | — |
 | `NOTIFICATION_MAIL_ACCOUNT` | 通知用管理者Emailアドレス | — |
 
-![Settings設定](media/images/Google-Form-PSN-13.png)  
-![Settings設定](media/images/Google-Form-PSN-14.png)  
-![Settings設定](media/images/Google-Form-PSN-15.png)  
+![Settings設定](images/Google-Form-PSN-13.png)  
+![Settings設定](images/Google-Form-PSN-14.png)  
+![Settings設定](images/Google-Form-PSN-15.png)  
 
 > ⚠️ **注意：** Code内のCOLNOはSpreadsheetの各Columnの順番と一致させる必要があります。
 
@@ -163,7 +163,7 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 
 ### 4. Triggerを設定する
 
-![Settings設定](media/images/Google-Form-PSN-16.png)
+![Settings設定](images/Google-Form-PSN-16.png)
 
 ---
 
@@ -171,7 +171,7 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 
 Google Spreadsheetの画面に管理用MENUを追加します。
 
-![Settings設定](media/images/Google-Form-PSN-17.png)
+![Settings設定](images/Google-Form-PSN-17.png)
 
 ##### 初回認証
 
