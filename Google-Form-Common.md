@@ -1,7 +1,7 @@
 # Sign Up With Google 仕組み
 
 Googleのアカウントを使ってPubcasefinderサーバへSignUp仕組み
-![](images/Google-Form-Common-0.png)
+![](images/Google-Form-Common-0.PNG)
 
 
 1.  Userが「Sign Up」をスタート
