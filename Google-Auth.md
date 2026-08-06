@@ -10,7 +10,8 @@
 1. Projectを新規作成
 ご利用Google AccountでGoogleをログインして、[Google API Console](https://console.developers.google.com/apis?authuser=1)へアクセス
 
-![](images/Google-Auth-1.png){width="7.268055555555556in" height="2.7847222222222223in"}
+![](images/Google-Auth-1.png){width="7.268055555555556in"
+height="2.7847222222222223in"}
 
 「プロジェクトの選択」ブタンをクリックする
 
