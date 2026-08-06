@@ -1,8 +1,6 @@
 # 一、Sign Up With Google 仕組み
 
 ![](images/Google-Form-Common-0.PNG)
-
-
 1.  Userが「Sign Up」をスタート
 
 2.  Flask側、Configファイルに定義されたGoogle Form URLへRedirect
@@ -39,38 +37,36 @@
 # 二、例として、下のサーバのGoogleFormの作成を説明する。
 「https://staging-pubcasefinder.dbcls.jp」
 
+
+
 ## 1. Google Formを新規作成
 
-> ご利用のGoogle AccountでログインGoogleへアクセス
-
+ご利用のGoogle AccountでログインGoogleへアクセス
 ![](images/Google-Form-Common-1.png)
-
 「Forms」というGoogle APPをクリックする
 
-![](images/Google-Form-Common-2.png)
 
+![](images/Google-Form-Common-2.png)
 「Start a new form」をクリックする
 
 
 ## 2. Google Formの設定
 
 ![](images/Google-Form-Common-3.png)
-
 「Settings」タブを選択し、「Responses」部分を設定する。
-
 ⁂「Make this a quiz」部分は押さないで
 
+
+
 ![](images/Google-Form-Common-4.png)
-
-
 「Presentation」部分を設定する。特に、Confirmation message部分は編集する。
+
+
 
 ## 3. GoogleFormのQuestionの作成
 
 ![](images/Google-Form-Common-5.png)
-
 「Questions」タブを選択、FormのTitleを編集、Formの各Questionを以下の順番で追加する。
-
 | Title | Required | Validation |
 |-------|:--------:|:----------:|
 | Last name (English) | ON | NO |
@@ -85,24 +81,26 @@
 
 
 ![](images/Google-Form-Common-6.png)
-
 特に、「Affiliation email」部分は、下右の三点マックよりResponse validationを設定する。
-
 - Regular expression
 - Matches
 - ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
 - **Please enter a valid email address!**
 
+
+
+
 ## 4.Google Form のPublish
 
 ![](images/Google-Form-Common-7.png)
-
 FormをPublishする。
+
+
+
 
 ## 5. GoogleFormのLink
 
 ![](images/Google-Form-Common-8.png)
-
 このFormのURLを表示して、保存する。「.env」ファイルへ設定する。
 
 
@@ -112,17 +110,19 @@ Google Form側、新規登録くる時、Google はユーザー入力した情�
 
 ここは、GoogleFormの「onSubmit Trigger」を作成する。このTriggerは、該当ResponseのResponseIDをGoogleSpreadsheetのResponseID Columnへ保存する処理を行う。
 
-![](images/Google-Form-Common-9.png)
 
+![](images/Google-Form-Common-9.png)
 図面のように、GoogleFormの編集画面を開けて、「google form id」を記録し、GAS編集画面を開ける
 
-![](images/Google-Form-Common-10.png)
 
+
+![](images/Google-Form-Common-10.png)
 GASに、GithubにPUSHした「static/js/google-form-common.js」で、Scriptを設定する。Google
 SpreadsheetのID、SpreadsheetのSheet名を設定する。COLNOの部分は、SpreadsheetのColumnの順番を一致する。保存。
 
-![](images/Google-Form-Common-11.png)
 
+
+![](images/Google-Form-Common-11.png)
 onSubmit Triggerを追加
 
 
