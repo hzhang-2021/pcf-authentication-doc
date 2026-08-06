@@ -1,5 +1,5 @@
 # PubCaseFinder Authentication
-This document describes how to add Google Authentication (OAuth 2.0) to a Flask web application.
+This document describes how to add Google Authentication (OAuth 2.0) to PubCaseFinder Flask Server.
 
 
 
@@ -25,4 +25,5 @@ The authentication flow is as follows:
 * Google Account(Google Auth, Google FormとGoogle Spreadsheet作成用)
 * Google SMTP送信用アカウントとアプリパスワード
 
-
+# Google OAuth 2.0 Client IDの作成
+[Google Authentication Design](docs/Google-Auth.docx)
