@@ -171,8 +171,8 @@ Codeの中身を確認する：
    Pubcasefinderサーバー側「.env」に「GOOGLE_FORM_SECRET_KEY」の値と一致
 
 ![](images/Google-Form-Common-17.png)
-- PBS_SPREADSHEET_ID：
-  例：以下の[]部分
+- PBS_SPREADSHEET_ID： \
+  例：以下の[]部分 \
   https://docs.google.com/spreadsheets/d/[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]/edit..
 
 - PBS_SPREADSHEET_DATA_NAME：
