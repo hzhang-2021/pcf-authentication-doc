@@ -126,145 +126,112 @@ SpreadsheetのID、SpreadsheetのSheet名を設定する。COLNOの部分は、S
 onSubmit Triggerを追加
 
 
+
+
 # 三、Google Spreadsheetの作成**
 
-1\. Google Form Linked Google Spreadsheetを新規作成
-
-![](media/image12.png){width="7.268055555555556in"
-height="6.773611111111111in"}
-
+## 1. Google Form Linked Google Spreadsheetを新規作成
+![](images/Google-Form-Common-12.png)
 Formへ関連するGoogle Spreadsheetを設定する。
 
-![](media/image13.png){width="7.268055555555556in"
-height="6.773611111111111in"}
 
+![](images/Google-Form-Common-13.png)
 Spreadsheetの名前を設定して、作成する
 
-2.Google
-Spreadsheetに自動的作成したColumnの後ろ、追加ColumnのHeaderを設定する。
 
-![](media/image14.png){width="7.268055555555556in"
-height="4.086111111111111in"}
+
+## 2.Google
+Spreadsheetに自動的作成したColumnの後ろ、追加ColumnのHeaderを設定する。
+![](images/Google-Form-Common-14.png)
 
 ColumnのHeaderへ、以下のColumnを手動で追加する
 
-**UID**
-
-**AuthenticationCode**
-
-**isEmailValid**
-
-**isRegisted**
-
-**ResponseID**
-
+###UID
+###AuthenticationCode
+###isEmailValid
+###isRegisted
+###ResponseID
 追加したColumnを確認する
 
-3.  Google Spreadsheet のGASを編集する
-
-![](media/image15.png){width="7.268055555555556in"
-height="6.222916666666666in"}
-
+## 3. Google Spreadsheet のGASを編集する
+![](images/Google-Form-Common-15.png)
 Spreadsheetの機能を作ります。
 
-![](media/image16.png){width="7.268055555555556in"
-height="4.385416666666667in"}
 
+
+![](images/Google-Form-Common-16.png)
 GASに、GithubにPUSHした「static/js/google-spreadsheet-common.js」で、Scriptを設定する。
-
 Codeの中身を確認する：
 
-- **PUBCASEFINDER_WEB_SERVER**:
+- PUBCASEFINDER_WEB_SERVER:
+  PubcasefinderサーバのURL(例: https://staging-pubcasefinder.dbcls.jp/)を設定する。
 
-> PubcasefinderサーバのURL(例: https://
-> staging-pubcasefinder.dbcls.jp/)を設定する。
+- PUBCASEFINDER_WEB_SERVER_SECRET_KEY:
 
-- **PUBCASEFINDER_WEB_SERVER_SECRET_KEY**:
+   Pubcasefinderサーバー側「.env」に「GOOGLE_FORM_SECRET_KEY」の値と一致
 
-> Pubcasefinderサーバー側「.env」に「GOOGLE_FORM_SECRET_KEY」の値と一致
+![](images/Google-Form-Common-17.png)
+- PBS_SPREADSHEET_ID：
 
-![](media/image17.png){width="7.268055555555556in"
-height="2.2569444444444446in"}
+ 例：以下の[]部分
+ https://docs.google.com/spreadsheets/d/[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]/edit..
 
-- **PBS_SPREADSHEET_ID**：
-
-> 例：以下の赤い部分
->
-> https://docs.google.com/spreadsheets/d/**1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ**/edit..
-
-- **PBS_SPREADSHEET_DATA_NAME**：
+- PBS_SPREADSHEET_DATA_NAME：
 
 > Spreadsheetのsheetの名前を「PubCaseFinder-Users-Sheet1」に設定する
 
-- **PBS_GOOGLEFORM_ID**：
+- PBS_GOOGLEFORM_ID：
 
 > 二の6に記録したgoogle form id をここに設定する
 
 CodeのCOLNOの部分は、Spreadsheetの各Columnの順番を一致する
 
-4.  Triggerを設定する
 
-![](media/image18.png){width="7.268055555555556in"
-height="5.200694444444444in"}
+## 4. Triggerを設定する
+
+![](images/Google-Form-Common-18.png)
 
 Triggerを設定する。
 
-(1)「onOpen Trigger」:
-
+### 「onOpen Trigger」:
 GoogleSpreadsheetの画面にMENUを追加する用
+![](images/Google-Form-Common-19.png)
 
-![](media/image19.png){width="7.268055555555556in"
-height="5.200694444444444in"}
+### 管理用Menu作成Triggerを追加
+![](images/Google-Form-Common-20.png)
 
-管理用Menu作成Triggerを追加
+### 初めて場合、認証を行います。
+![](images/Google-Form-Common-21.png)
 
-![](media/image20.png){width="6.266666666666667in"
-height="4.083333333333333in"}
+![](images/Google-Form-Common-22.png)
 
-初めて場合、認証を行います。
+![](images/Google-Form-Common-23.png)
 
-![](media/image21.png){width="5.0004330708661415in"
-height="4.700406824146982in"}
-
-![](media/image22.png){width="5.222490157480315in"
-height="4.903029308836396in"}
-
-![](media/image23.png){width="6.2672101924759405in"
-height="7.192290026246719in"}
-
-![](media/image24.png){width="7.268055555555556in"
-height="5.200694444444444in"}
+![](images/Google-Form-Common-24.png)
 
 Menu用Triggerを作成しました。
 
-(2)「on Form Submit Trigger」の作成
+### 「on Form Submit Trigger」の作成
 
 Google Form側、新規登録きっだ場合、データは
 
-![](media/image25.png){width="7.268055555555556in"
-height="4.680555555555555in"}
+![](images/Google-Form-Common-25.png)
 
-Google FormをSubmit 時のTriggerを作成
+### Google FormをSubmit 時のTriggerを作成
+![](images/Google-Form-Common-26.png)
 
-![](media/image26.png){width="7.268055555555556in"
-height="4.402777777777778in"}
-
-\(3\) GAS, Check Status Triggerを追加する
+### Check Status Triggerを追加する
 
 このTriggerは、定期的に、Pubcasefinderのサーバから、ユーザーの状態変更を取って、処理を行う。
 
-退会したユーザーは、Google
-FormのReponseListから、該当Responseを削除処理を行う
+退会したユーザーは、Google FormのReponseListから、該当Responseを削除処理を行う
 
-![](media/image27.png){width="7.268055555555556in"
-height="3.6013888888888888in"}
+![](images/Google-Form-Common-27.png)
 
-Check Status Triggerを追加. 「Select type of time based
-trigger」と「Select hour
-interval」部分は、SpreadsheetからPubcasefinderのサーバへアクセスし、状態変更したのユーザーを取る処理の頻度を定義する。ご自由にお使いください。
+Check Status Triggerを追加. 「Select type of time based trigger」と「Select hour interval」部分は、SpreadsheetからPubcasefinderのサーバへアクセスし、状態変更したのユーザーを取る処理の頻度を定義する。ご自由にお使いください。
 
-\(4\) ユーザーAuthentication　Expiration　Check　Triggerを作成
 
-![](media/image28.png){width="7.268055555555556in"
-height="4.277777777777778in"}
+### ユーザーAuthentication　Expiration　Check　Triggerを作成
+
+![](images/Google-Form-Common-28.png)
 
