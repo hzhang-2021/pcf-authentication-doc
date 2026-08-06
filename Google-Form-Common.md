@@ -128,7 +128,7 @@ onSubmit Triggerを追加
 
 
 
-# 三、Google Spreadsheetの作成**
+# 三、Google Spreadsheetの作成
 
 ## 1. Google Form Linked Google Spreadsheetを新規作成
 ![](images/Google-Form-Common-12.png)
@@ -140,18 +140,18 @@ Spreadsheetの名前を設定して、作成する
 
 
 
-## 2.Google
+## 2. Columnを新規追加
 Spreadsheetに自動的作成したColumnの後ろ、追加ColumnのHeaderを設定する。
 ![](images/Google-Form-Common-14.png)
 
 ColumnのHeaderへ、以下のColumnを手動で追加する
+### UID
+### AuthenticationCode
+### isEmailValid
+### isRegisted
+### ResponseID
 
-###UID
-###AuthenticationCode
-###isEmailValid
-###isRegisted
-###ResponseID
-追加したColumnを確認する
+
 
 ## 3. Google Spreadsheet のGASを編集する
 ![](images/Google-Form-Common-15.png)
