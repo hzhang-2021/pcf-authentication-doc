@@ -32,25 +32,19 @@
 
 ### 1. Google Formを新規作成
 
-1. ご利用のGoogle AccountでログインしGoogleへアクセス
-
+1. ご利用のGoogle AccountでログインしGoogleへアクセス,「Forms」というGoogle APPをクリック
    ![Googleログイン](images/Google-Form-Common-1.png)
 
-2. 「Forms」というGoogle APPをクリック
+2. 「Start a new form」をクリック
+   ![Forms作成](images/Google-Form-Common-2.png)
 
-   ![Forms選択](images/Google-Form-Common-2.png)
-
-3. 「Start a new form」をクリック
-
-   ![新規フォーム作成](images/Google-Form-Common-3.png)
 
 ---
 
 ### 2. Google Formの設定
 
 #### Settingsタブの設定
-
-![Settings設定](images/Google-Form-Common-4.png)
+![Form setting](images/Google-Form-Common-3.png)  
 
 **Responses部分：**
 - 「Make this a quiz」は**オンにしない**でください
@@ -58,6 +52,9 @@
 **Presentation部分：**
 - Confirmation messageを編集する
 
+
+
+![Settings設定](images/Google-Form-Common-4.png)
 ![Presentation設定](images/Google-Form-Common-5.png)
 
 ---
