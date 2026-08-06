@@ -153,11 +153,8 @@ Google Form側で新規登録が発生すると、以下の流れで処理が行
 フォームに関連するGoogle Spreadsheetを設定します。
 ![Trigger追加](images/Google-Form-Common-12.png)
 
-![Spreadsheet連携](images/Google-Form-Common-13.png)
-
 Spreadsheetの名前を設定して作成します。
-
-![Spreadsheet命名](images/Google-Form-Common-14.png)
+![Spreadsheet連携](images/Google-Form-Common-13.png)
 
 ---
 
@@ -165,7 +162,7 @@ Spreadsheetの名前を設定して作成します。
 
 Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラムを手動で設定します。
 
-![カラム追加](images/Google-Form-Common-15.png)
+![Spreadsheet命名](images/Google-Form-Common-14.png)
 
 | 追加カラム名 |
 |---|
@@ -180,6 +177,7 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 ### 3. Google Spreadsheet のGASを編集
 
 #### GASエディタを開く
+![カラム追加](images/Google-Form-Common-15.png)
 
 ![GAS編集](images/Google-Form-Common-16.png)
 
