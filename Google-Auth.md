@@ -3,7 +3,7 @@
 [参照文書](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ja)
 [参照文書](https://developers.google.com/identity/gsi/web/guides/overview?authuser=1)
 
-# 下に、例として、下のサーバ用OAuth 2.0 client credentialsの作成を説明する。
+# 例として、下のサーバ用OAuth 2.0 credentialsの作成を説明する。
  「https://staging-pubcasefinder.dbcls.jp」
 
 ## 1. Projectを新規作成
