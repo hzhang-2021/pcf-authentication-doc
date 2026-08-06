@@ -25,22 +25,23 @@ The authentication flow is as follows:
 * Google Account(Google Auth, Google FormとGoogle Spreadsheet作成用)
 * Google SMTP送信用アカウントとアプリパスワード
 
-# Google OAuth 2.0 Client ID/Secretの作成
+# 作成
+## Google OAuth 2.0 Client ID/Secretの作成
 [Google Authentication Design](docs/Google-Auth.docx)
 
 
 
-# 共通用版ログイン機能用Google FormとGoogle Spreadsheetの作成
-[Google Form and Google Spreadsheet(共通用版)](Google-Form-pubcasefinder.docx)
+## 共通用版ログイン機能用Google FormとSpreadsheetの作成
+[Google Form/Spreadsheet(共通用版)](Google-Form-pubcasefinder.docx)
 
 
 
-# Panelsearch(Nanybo)ログイン機能用Google FormとGoogle Spreadsheetの作成
-[Google Form and Google Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.docx)
+## Panelsearch(Nanybo)ログイン機能用Google FormとSpreadsheetの作成
+[Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.docx)
 
 
 
-# Google SMTP送信用アカウントとアプリパスワード
+## Google SMTP送信用アカウントとアプリパスワード
 [Google SMTP送信用アカウントとアプリパスワード](Gmail-SMTP.pptx)
 
 
