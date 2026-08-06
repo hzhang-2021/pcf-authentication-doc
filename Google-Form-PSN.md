@@ -33,13 +33,12 @@
 
 ### 1. Google Formを新規作成
 
-ご利用のGoogle AccountでログインしGoogleへアクセス
-
+ご利用のGoogle AccountでログインしGoogleへアクセス, 「Forms」というGoogle APPをクリック
    ![Googleログイン](images/Google-Form-PSN-1.png)
-「Forms」というGoogle APPをクリック
 
-   ![Forms選択](images/Google-Form-PSN-2.png)
 「Start a new form」をクリック
+   ![Forms選択](images/Google-Form-PSN-2.png)
+
 
 ---
 
