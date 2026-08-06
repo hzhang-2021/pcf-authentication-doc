@@ -80,12 +80,12 @@
 | Job title (native language) | OFF | NO |
 
 
-![](images/Google-Form-Common-6.png)
+![](images/Google-Form-Common-6.png)   
 特に、「Affiliation email」部分は、下右の三点マックよりResponse validationを設定する。
 - Regular expression
 - Matches
 - ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
-- **Please enter a valid email address!**
+- Please enter a valid email address!
 
 
 
@@ -174,7 +174,7 @@ Codeの中身を確認する：
 ![](images/Google-Form-Common-17.png)
 - PBS_SPREADSHEET_ID： \
   例：以下の[]部分 \
-  https://docs.google.com/spreadsheets/d/[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]/edit..
+  https://docs.google.com/spreadsheets/d/**[1evhGHU-Kpfhtm94DCL0KHMN5ljHEV2rRnrCHCy8B_WQ]**/edit..
 
 - PBS_SPREADSHEET_DATA_NAME：
   Spreadsheetのsheetの名前を「PubCaseFinder-Users-Sheet1」に設定する
