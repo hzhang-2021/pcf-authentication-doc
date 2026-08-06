@@ -51,11 +51,8 @@
 
 **Presentation部分：**
 - Confirmation messageを編集する
+![Confirmation message](images/Google-Form-Common-4.png)
 
-
-
-![Settings設定](images/Google-Form-Common-4.png)
-![Presentation設定](images/Google-Form-Common-5.png)
 
 ---
 
@@ -63,7 +60,7 @@
 
 「Questions」タブを選択し、FormのTitleを編集後、以下の順序で質問を追加します。
 
-![Questions作成](images/Google-Form-Common-6.png)
+![Questions作成](images/Google-Form-Common-5.png)  
 
 | # | Title | Required | Validation |
 |:-:|---|---|:---:|
@@ -78,10 +75,10 @@
 | 9 | Job title (native language) | ❌ OFF | ❌ NO |
 
 #### メールアドレス検証設定
+![メールアドレス検証設定](images/Google-Form-Common-6.png)
 
 「**Affiliation email**」フィールドについては、右下の三点マーク（⋮）より**Response validation**を設定します。
 
-![メール検証設定](images/Google-Form-Common-7.png)
 
 | 設定項目 | 値 |
 |---|---|
@@ -95,22 +92,26 @@
 ### 4. Google Form のPublish
 
 フォームを公開（Publish）します。
+![Publish](images/Google-Form-Common-7.png)
 
-![フォーム公開](images/Google-Form-Common-8.png)
 
+---
+
+### 5. Google Form のURLを取得
 Google FormのURLを表示して保存します。
+![フォームURL](images/Google-Form-Common-8.png)  
 > 📌 このURLを `.env` ファイルの `GOOGLE_FORM_URL_PCF` へ設定します。
 
 ---
 
-### 5. URLからGoogle Form IDを取得
+### 6. URLからGoogle Form IDを取得
 
 ![URLからGoogle Form IDを取得](images/Google-Form-Common-9.png)  
 上のように、Google Form IDを取得
 
 ---
 
-### 6. Google Formの「onSubmit Trigger」作成
+### 7. Google Formの「onSubmit Trigger」作成
 
 Google Form側で新規登録が発生すると、以下の流れで処理が行われます：
 
