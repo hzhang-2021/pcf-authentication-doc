@@ -179,13 +179,10 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 #### GASエディタを開く
 ![カラム追加](images/Google-Form-Common-15.png)
 
-![GAS編集](images/Google-Form-Common-16.png)
-
 #### Script設定
 
 GASに、GithubにPUSHした `static/js/google-spreadsheet-common.js` でScriptを設定します。
-
-![GAS設定詳細](images/Google-Form-Common-17.png)
+![GAS編集](images/Google-Form-Common-16.png)
 
 ##### 設定変数一覧
 
@@ -197,15 +194,15 @@ GASに、GithubにPUSHした `static/js/google-spreadsheet-common.js` でScript�
 | `PBS_SPREADSHEET_DATA_NAME` | Spreadsheetのシート名 | `PubCaseFinder-Users-Sheet1` |
 | `PBS_GOOGLEFORM_ID` | 二-5で記録したGoogle Form ID | — |
 
-![ID設定例](images/Google-Form-Common-18.png)
+ID設定例
+![GAS設定詳細](images/Google-Form-Common-17.png)
 
 > ⚠️ **注意：** Code内のCOLNOはSpreadsheetの各Columnの順番と一致させる必要があります。
 
 ---
 
 ### 4. Triggerを設定する
-
-![Trigger設定](images/Google-Form-Common-19.png)
+![ID設定例](images/Google-Form-Common-18.png)
 
 ---
 
@@ -213,9 +210,6 @@ GASに、GithubにPUSHした `static/js/google-spreadsheet-common.js` でScript�
 
 Google Spreadsheetの画面に管理用MENUを追加します。
 
-![onOpen Trigger 1](images/Google-Form-Common-20.png)
-
-![onOpen Trigger 2](images/Google-Form-Common-21.png)
 
 ##### 初回認証
 
@@ -223,11 +217,13 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 
 | 認証手順 | 画面 |
 |---|---|
-| 認証① | ![認証1](images/Google-Form-Common-22.png) |
-| 認証② | ![認証2](images/Google-Form-Common-23.png) |
-| 認証③ | ![認証3](images/Google-Form-Common-24.png) |
-| 認証④ | ![認証4](images/Google-Form-Common-25.png) |
+| 認証① | ![認証1](images/Google-Form-Common-19.png) |
+| 認証② | ![認証2](images/Google-Form-Common-20.png) |
+| 認証③ | ![認証3](images/Google-Form-Common-21.png) |
+| 認証④ | ![認証4](images/Google-Form-Common-22.png) |
+| 認証④ | ![認証4](images/Google-Form-Common-23.png) |
 
+![Form onOpen](images/Google-Form-Common-24.png)
 > ✅ Menu用Triggerが作成されました。
 
 ---
@@ -235,21 +231,20 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 #### ② on Form Submit Trigger
 
 Google Form側で新規登録があった場合に実行されます。
+![Form Submit Trigger 1](images/Google-Form-Common-25.png) 
 
 ![Form Submit Trigger 1](images/Google-Form-Common-26.png)
 
-![Form Submit Trigger 2](images/Google-Form-Common-27.png)
 
 ---
 
 #### ③ Check Status Trigger（定期チェック用）
-
+![check status](images/Google-Form-Common-27.png)
 このTriggerは、定期的にPubcasefinderサーバからユーザーの状態変更を取得し処理を行います。
 
 **処理内容：**
 - 退会したユーザーは、Google FormのResponseListから該当Responseを削除
 
-![Status Check Trigger](images/Google-Form-Common-28.png)
 
 **設定項目：**
 | 項目 | 説明 |
@@ -265,7 +260,7 @@ Google Form側で新規登録があった場合に実行されます。
 
 認証の有効期限をチェックするTriggerです。
 
-![Expiration Check Trigger](images/Google-Form-Common-29.png)
+![Expiration Check Trigger](images/Google-Form-Common-28.png)
 
 ---
 
