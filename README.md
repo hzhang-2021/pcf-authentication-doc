@@ -31,9 +31,9 @@ The authentication flow is as follows:
 
 
 
-\
-\
 # 作成:
+
+
 ## 一、Google OAuth 2.0 Client ID/Secretの作成
 For more information, see the [Google Authentication Guide](Google-Auth.md). \
 The results will be used at the following configuration items:
@@ -57,11 +57,5 @@ The results will be used at the following configuration items:
 For more information, see the[Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.docx) \
 The results will be used at the following configuration items:
 - GOOGLE_FORM_URL_PSN
-
-
-## 四、Google SMTP送信用アカウントとアプリパスワード
-[Google SMTP送信用アカウントとアプリパスワード](Gmail-SMTP.pptx)
-
-
 
 

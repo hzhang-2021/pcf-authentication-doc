@@ -188,17 +188,14 @@ CodeのCOLNOの部分は、Spreadsheetの各Columnの順番を一致する
 ## 4. Triggerを設定する
 
 ![](images/Google-Form-Common-18.png)
-
 Triggerを設定する。
 
-### 「onOpen Trigger」:
-GoogleSpreadsheetの画面にMENUを追加する用
+### 「onOpen Trigger」: GoogleSpreadsheetの画面にMENUを追加する用
 ![](images/Google-Form-Common-19.png)
 
-### 管理用Menu作成Triggerを追加
 ![](images/Google-Form-Common-20.png)
 
-### 初めて場合、認証を行います。
+初めて場合、認証を行います。
 ![](images/Google-Form-Common-21.png)
 
 ![](images/Google-Form-Common-22.png)
@@ -215,10 +212,9 @@ Google Form側、新規登録きっだ場合、データは
 
 ![](images/Google-Form-Common-25.png)
 
-### Google FormをSubmit 時のTriggerを作成
 ![](images/Google-Form-Common-26.png)
 
-### Check Status Triggerを追加する
+### 「Check Status Trigger」を追加する
 
 このTriggerは、定期的に、Pubcasefinderのサーバから、ユーザーの状態変更を取って、処理を行う。
 
@@ -229,7 +225,7 @@ Google Form側、新規登録きっだ場合、データは
 Check Status Triggerを追加. 「Select type of time based trigger」と「Select hour interval」部分は、SpreadsheetからPubcasefinderのサーバへアクセスし、状態変更したのユーザーを取る処理の頻度を定義する。ご自由にお使いください。
 
 
-### ユーザーAuthentication　Expiration　Check　Triggerを作成
+### 「Authentication Expiration Check Trigger」を作成
 
 ![](images/Google-Form-Common-28.png)
 
