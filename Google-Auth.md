@@ -6,6 +6,10 @@
 # 例として、下のサーバ用OAuth 2.0 credentialsの作成を説明する。
  「https://staging-pubcasefinder.dbcls.jp」
 
+## Prerequisites
+- Domain Name of the Flask Server(例：https://staging-pubcasefinder.dbcls.jp)
+- Google Account(Google Credential作成用)
+
 ## 1. Projectを新規作成
 ご利用Google AccountでGoogleをログインして、[Google API Console](https://console.developers.google.com/apis?authuser=1)へアクセス
 
