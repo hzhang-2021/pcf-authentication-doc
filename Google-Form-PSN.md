@@ -1,5 +1,13 @@
 # Google Form サインアップシステム（Panelsearch/Nanbyo 版）
 
+## Prerequisites
+- Domain Name of the Flask Server(例：https://staging-pubcasefinder.dbcls.jp)
+- Google Account(Google FormとSpreadsheet作成用)
+- GOOGLE_FORM_SECRET_KEY(from flask configure file(.env))
+
+---
+
+
 ## 一、システム仕組み
 
 ![システムフロー図](images/Google-Form-PSN-0.png)
