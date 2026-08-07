@@ -149,7 +149,11 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 #### Script設定
 
 GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-panelsearch-nanbyo.js` でScriptを設定します。
-![Settings設定](images/Google-Form-PSN-13.png)
+![Settings設定](images/Google-Form-PSN-13.png)  
+
+![Settings設定](images/Google-Form-PSN-14.png)   
+
+![Settings設定](images/Google-Form-PSN-15.png)  
 
 ##### 設定変数一覧
 
@@ -161,9 +165,6 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 | `PBS_SPREADSHEET_DATA_NAME` | Spreadsheetのシート名 | `PubCaseFinder-PanelSearch-Users-Sheet1` |
 | `COLNO_XXX` | Spreadsheetの各Columnの順番と一致させる | — |
 | `NOTIFICATION_MAIL_ACCOUNT` | 通知用管理者Emailアドレス | — |
-
-![Settings設定](images/Google-Form-PSN-14.png)  
-![Settings設定](images/Google-Form-PSN-15.png)  
 
 > ⚠️ **注意：** Code内のCOLNOはSpreadsheetの各Columnの順番と一致させる必要があります。
 
