@@ -5,6 +5,8 @@
 - Google Account(Google FormとSpreadsheet作成用)
 - GOOGLE_FORM_SECRET_KEY(from flask configure file(.env))
 
+---
+
 ## 一、システム仕組み
 
 ![システムフロー図](images/Google-Form-Common-0.PNG)
