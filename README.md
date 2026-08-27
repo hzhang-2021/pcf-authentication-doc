@@ -53,7 +53,7 @@ The results will be used at the following configuration items:
 
 
 ## 三、Panelsearch(Nanybo)ログイン機能用Google FormとSpreadsheetの作成
-For more information, see the [Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.docx) \
+For more information, see the [Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.md) \
 The results will be used at the following configuration items:
 - GOOGLE_FORM_URL_PSN
 
