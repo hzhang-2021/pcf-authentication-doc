@@ -246,17 +246,17 @@ Status Check Triggerを作成します。
 
 ### 1. 初めでユーザーGoogleFormより登録の例(管理者が存在しない場合)  
    (1) Panelsearch(nanbyo)各画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
-   ![図: ログインボタン](images/Google-Form-Common-29.png)  
+   ![図: ログインボタン](images/Google-Form-PSN-28.png)  
    
    (2) Google Formに記入して、Submitする  
-   ![図: フォーム入力例](images/Google-Form-Common-30.png)    
+   ![図: フォーム入力例](images/Google-Form-PSN-29.png)    
    
    (3) ユーザーがGoogleFormに記入したaffiliation email addressで、email authenticationを行い  
-   ![図: 認証メール](images/Google-Form-Common-31.png)    
-   ![図: 認証リンク](images/Google-Form-Common-32.png)    
+   ![図: 認証メール](images/Google-Form-PSN-30.png)    
+   ![図: 認証リンク](images/Google-Form-PSN-31.png)    
    
    (4) 管理者がGoogleSpreadsheetのメニュー機能より、ユーザーの登録は「承認」方法
-   ![図: 完了画面](images/Google-Form-Common-33.png)  
+   ![図: 完了画面](images/Google-Form-PSN-32.png)  
 
 ### 2. 指定ユーザーに管理者権限を付与する方法
 
@@ -272,7 +272,7 @@ Status Check Triggerを作成します。
 
 ```sql
 -- 対象ユーザーを管理者（user_type = 3）に更新
-UPDATE user_account
+UPDATE user_info_psn
 SET user_type = 3
 WHERE google_id = 'ここに対象ユーザーのGoogleアカウント（メールアドレス）を入力';
 
