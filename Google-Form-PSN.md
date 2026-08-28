@@ -286,5 +286,4 @@ docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
 ```
 
 
-### ３. 管理者が管理画面で、ユーザー登録の「承認」まだは「拒否」にする方法
 
