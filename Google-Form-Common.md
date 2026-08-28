@@ -294,9 +294,12 @@ Google Form側で新規登録があった場合に実行されます。
 2. 指定ユーザーが管理者に変更する方法  
    > **ユーザーにAdmin権限を与えるには、「set_admin.sql」をStagingのDockerディレクトリ下のmysql/scripts下に置いて、「set_admin.sql」中に「where google_id=\''」に該当ユーザーのGoogleAccountを設定し、以下のように実行してください。**  
    ```sql
-   UPDATE user_account set user_type=3 where google_id='****';
-bash
-docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
-text
+   UPDATE `user_account` set user_type=3 where google_id=&#39;******&#39;
+
+
+ 
+   ```bash
+   docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
+
 
 ---
