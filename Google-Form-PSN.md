@@ -239,18 +239,52 @@ Status Check Triggerを作成します。
 ✅ すべてのTriggerが設定されました  
 ✅ Google FormのURLを記録して、`.env`設定ファイルに設定します
 
-### 設定チェックリスト
+---
 
-- [ ] Google Form作成・公開済み
-- [ ] 各Question（7項目）を正しく設定
-- [ ] 所属機関のメールアドレスにバリデーション設定
-- [ ] .envにGoogle Form URLを設定
-- [ ] Spreadsheetに追加カラム（4項目）を追加
-- [ ] SpreadsheetのGAS変数を正しく設定
-- [ ] onOpen Trigger設定（メニュー追加）
-- [ ] on Form Submit Trigger設定
-- [ ] Check Status Trigger設定
-- [ ] 管理者通知メール送信Trigger設定
-- [ ] Authentication Expiration Check Trigger設定
 
+**四、ユーザー登録の例と指定ユーザーが管理者にする方法**
+
+### 1. 初めでユーザーGoogleFormより登録の例(管理者が存在しない場合)  
+   (1) Panelsearch(nanbyo)各画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
+   ![図: ログインボタン](images/Google-Form-Common-29.png)  
+   
+   (2) Google Formに記入して、Submitする  
+   ![図: フォーム入力例](images/Google-Form-Common-30.png)    
+   
+   (3) ユーザーがGoogleFormに記入したaffiliation email addressで、email authenticationを行い  
+   ![図: 認証メール](images/Google-Form-Common-31.png)    
+   ![図: 認証リンク](images/Google-Form-Common-32.png)    
+   
+   (4) 管理者がGoogleSpreadsheetのメニュー機能より、ユーザーの登録は「承認」方法
+   ![図: 完了画面](images/Google-Form-Common-33.png)  
+
+### 2. 指定ユーザーに管理者権限を付与する方法
+
+管理者権限（`user_type = 3`）を特定のユーザーに付与するには、以下の手順で SQL を実行します。
+
+> [!WARNING]
+> - 実行前に、対象ユーザーの Google ID（`google_id`）を**必ず実際の値に置き換えて**ください。
+> - 本番環境で実行する場合は、事前にユーザー情報をバックアップすることを推奨します。
+
+#### 手順 1: SQL ファイルの作成
+
+`mysql/scripts/` ディレクトリ内に `set_admin.sql` という名前でファイルを作成し、以下の内容を記述します。
+
+```sql
+-- 対象ユーザーを管理者（user_type = 3）に更新
+UPDATE user_account
+SET user_type = 3
+WHERE google_id = 'ここに対象ユーザーのGoogleアカウント（メールアドレス）を入力';
+
+```
+
+#### 手順 2: DockerコンテナでSQLを実行
+以下のコマンドを実行して、SQLファイルをMySQLに適用します。
+
+```bash
+docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
+```
+
+
+### ３. 管理者が管理画面で、ユーザー登録の「承認」まだは「拒否」にする方法
 
