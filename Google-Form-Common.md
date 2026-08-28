@@ -283,11 +283,14 @@ Google Form側で新規登録があった場合に実行されます。
 ### 1. ユーザーGoogleFormよりPubcasefinder共通用版登録の例  
    (1) DiseaseSearch、CaseSharing、Panelsearch各サービス画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
    ![図: ログインボタン](images/Google-Form-Common-29.png)  
+   
    (2) Google Formに記入して、Submitする  
    ![図: フォーム入力例](images/Google-Form-Common-30.png)    
-   (3) email authenticationを行い  
+   
+   (3) ユーザーがGoogleFormに記入したaffiliation email addressで、email authenticationを行い  
    ![図: 認証メール](images/Google-Form-Common-31.png)    
    ![図: 認証リンク](images/Google-Form-Common-32.png)    
+   
    (4) 完了  
    ![図: 完了画面](images/Google-Form-Common-33.png)  
 
