@@ -280,7 +280,7 @@ Google Form側で新規登録があった場合に実行されます。
 
 **四、ユーザー登録の例と指定ユーザーが管理者にする方法**
 
-1. ユーザーGoogleFormよりPubcasefinder共通用版登録の例  
+### 1. ユーザーGoogleFormよりPubcasefinder共通用版登録の例  
    (1) DiseaseSearch、CaseSharing、Panelsearch各サービス画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
    ![図: ログインボタン](images/Google-Form-Common-29.png)  
    (2) Google Formに記入して、Submitする  
@@ -291,15 +291,22 @@ Google Form側で新規登録があった場合に実行されます。
    (4) 完了  
    ![図: 完了画面](images/Google-Form-Common-33.png)  
 
-2. 指定ユーザーが管理者に変更する方法  
-   > **ユーザーにAdmin権限を与えるには、「set_admin.sql」をStagingのDockerディレクトリ下のmysql/scripts下に置いて、「set_admin.sql」中に「where google_id=\''」に該当ユーザーのGoogleAccountを設定し、以下のように実行してください。**  
-   ```sql
-   UPDATE `user_account` set user_type=3 where google_id=&#39;******&#39;
+### 2. 指定ユーザーに管理者権限を付与する方法
 
+管理者権限（`user_type = 3`）を特定のユーザーに付与するには、以下の手順で SQL を実行します。
 
- 
-   ```bash
-   docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
+> [!WARNING]
+> - 実行前に、対象ユーザーの Google ID（`google_id`）を**必ず実際の値に置き換えて**ください。
+> - 本番環境で実行する場合は、事前にユーザー情報をバックアップすることを推奨します。
 
+#### 手順 1: SQL ファイルの作成
+
+`mysql/scripts/` ディレクトリ内に `set_admin.sql` という名前でファイルを作成し、以下の内容を記述します。
+
+```sql
+-- 対象ユーザーを管理者（user_type = 3）に更新
+UPDATE user_account
+SET user_type = 3
+WHERE google_id = 'ここに対象ユーザーのGoogleアカウント（メールアドレス）を入力';
 
 ---
