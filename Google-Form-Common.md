@@ -275,16 +275,28 @@ Google Form側で新規登録があった場合に実行されます。
 
 以上で全ての設定が完了です。
 
-### 設定チェックリスト
 
-- [ ] Google Form作成・公開済み
-- [ ] 各Question（9項目）を正しく設定
-- [ ] Affiliation emailにバリデーション設定
-- [ ] .envにGOOGLE_FORM_URL_PCFを設定
-- [ ] Google FormのonSubmit Trigger設定
-- [ ] Spreadsheetに追加カラム（5項目）を追加
-- [ ] SpreadsheetのGAS変数を正しく設定
-- [ ] onOpen Trigger設定（メニュー追加）
-- [ ] on Form Submit Trigger設定
-- [ ] Check Status Trigger設定
-- [ ] Authentication Expiration Check Trigger設定
+---
+
+**四、ユーザー登録の例と指定ユーザーが管理者にする方法**
+
+1. ユーザーGoogleFormよりPubcasefinder共通用版登録の例  
+   (1) DiseaseSearch、CaseSharing、Panelsearch各サービス画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
+   ![図: ログインボタン](images/Google-Form-Common-29.png)  
+   (2) Google Formに記入して、Submitする  
+   ![図: フォーム入力例](images/Google-Form-Common-30.png)    
+   (3) email authenticationを行い  
+   ![図: 認証メール](images/Google-Form-Common-31.png)    
+   ![図: 認証リンク](images/Google-Form-Common-32.png)    
+   (4) 完了  
+   ![図: 完了画面](images/Google-Form-Common-33.png)  
+
+2. 指定ユーザーが管理者に変更する方法  
+   > **ユーザーにAdmin権限を与えるには、「set_admin.sql」をStagingのDockerディレクトリ下のmysql/scripts下に置いて、「set_admin.sql」中に「where google_id=\''」に該当ユーザーのGoogleAccountを設定し、以下のように実行してください。**  
+   ```sql
+   UPDATE user_account set user_type=3 where google_id='****';
+bash
+docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
+text
+
+---
