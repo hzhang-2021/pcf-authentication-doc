@@ -309,10 +309,11 @@ UPDATE user_account
 SET user_type = 3
 WHERE google_id = 'ここに対象ユーザーのGoogleアカウント（メールアドレス）を入力';
 
----
+```
 
 #### 手順 2: DockerコンテナでSQLを実行
 以下のコマンドを実行して、SQLファイルをMySQLに適用します。
 
 ```bash
 docker compose exec -T mysql sh /scripts/exec_sql_file.sh /scripts/set_admin.sql
+```
