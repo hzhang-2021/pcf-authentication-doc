@@ -257,6 +257,8 @@ Status Check Triggerを作成します。
    
    (4) 管理者がGoogleSpreadsheetのメニュー機能より、ユーザーの登録は「承認」方法
    ![図: 完了画面](images/Google-Form-PSN-32.png)  
+   
+   ここまで、ユーザー登録は完了しました。PanelSearch NanbyoにユーザーLoginできます
 
 ### 2. 指定ユーザーに管理者権限を付与する方法
 
