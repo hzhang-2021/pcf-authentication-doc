@@ -35,7 +35,7 @@ The authentication flow is as follows:
 
 
 ## 一、Google OAuth 2.0 Client ID/Secretの作成
-For more information, see the [Google Authentication Guide](Google-Auth.md). \
+For more information, see the [Google Authentication Guide](docs/Google-Auth.md). \
 The results will be used at the following configuration items:
 - GOOGLE_CLIENT_ID
 - GOOGLE_CLIENT_SECRET
@@ -45,7 +45,7 @@ The results will be used at the following configuration items:
 
 
 ## 二、共通用版ログイン機能用Google FormとSpreadsheetの作成
-For more information, see the [Google Form/Spreadsheet(共通用版)](Google-Form-Common.md) \
+For more information, see the [Google Form/Spreadsheet(共通用版)](docs/Google-Form-Common.md) \
 The results will be used at the following configuration items:
 - GOOGLE_FORM_URL_PCF
 
@@ -53,7 +53,7 @@ The results will be used at the following configuration items:
 
 
 ## 三、Panelsearch(Nanybo)ログイン機能用Google FormとSpreadsheetの作成
-For more information, see the [Google Form/Spreadsheet(Panelsearch(Nanybo)版)](Google-Form-PSN.md) \
+For more information, see the [Google Form/Spreadsheet(Panelsearch(Nanybo)版)](docs/Google-Form-PSN.md) \
 The results will be used at the following configuration items:
 - GOOGLE_FORM_URL_PSN
 
