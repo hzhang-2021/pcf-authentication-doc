@@ -10,7 +10,7 @@
 
 ## 一、システム仕組み
 
-![システムフロー図](../images/Google-Form-PSN-0.png)
+![システムフロー図](images/Google-Form-PSN-0.png)
 
 ### 処理フロー
 
@@ -42,10 +42,10 @@
 ### 1. Google Formを新規作成
 
 ご利用のGoogle AccountでログインしGoogleへアクセス, 「Forms」というGoogle APPをクリック
-   ![Googleログイン](../images/Google-Form-PSN-1.png)
+   ![Googleログイン](images/Google-Form-PSN-1.png)
 
 「Start a new form」をクリック
-   ![Forms選択](../images/Google-Form-PSN-2.png)
+   ![Forms選択](images/Google-Form-PSN-2.png)
 
 
 ---
@@ -56,12 +56,12 @@
 
 **Responses部分：**
 - 「Make this a quiz」は**オンにしない**でください
-![新規フォーム作成](../images/Google-Form-PSN-3.png)
+![新規フォーム作成](images/Google-Form-PSN-3.png)
 
 
 **Presentation部分：**
 - Confirmation messageを編集する
-![Settings設定](../images/Google-Form-PSN-4.png)
+![Settings設定](images/Google-Form-PSN-4.png)
 
 ---
 
@@ -78,12 +78,12 @@
 | 6 | **所属機関のメールアドレス** | ✅ ON | ✅ **YES** |
 | 7 | 職名 | ✅ ON | ❌ NO |
 
-![Settings設定](../images/Google-Form-PSN-5.png)
+![Settings設定](images/Google-Form-PSN-5.png)
 
 #### メールアドレス検証設定
 
 「**所属機関のメールアドレス**」フィールドについては、右下の三点マーク（⋮）より**Response validation**を設定します。
-![Settings設定](../images/Google-Form-PSN-6.png)
+![Settings設定](images/Google-Form-PSN-6.png)
 
 | 設定項目 | 値 |
 |---|---|
@@ -97,14 +97,14 @@
 ### 4. Google Form のPublish
 
 フォームを公開（Publish）します。
-![Settings設定](../images/Google-Form-PSN-7.png)
+![Settings設定](images/Google-Form-PSN-7.png)
 
 ---
 
 ### 5. Google FormのURL取得
 
 フォームのURLを表示して保存します。
-![Settings設定](../images/Google-Form-PSN-8.png)
+![Settings設定](images/Google-Form-PSN-8.png)
 
 > 📌 このURLを `.env` ファイルのGOOGLE_FORM_URL_PSNへ設定します。
 
@@ -117,10 +117,10 @@
 ### 1. Google Form連携Spreadsheetを新規作成
 
 フォームに関連するGoogle Spreadsheetを設定します。
-![Settings設定](../images/Google-Form-PSN-9.png)
+![Settings設定](images/Google-Form-PSN-9.png)
 
 Spreadsheetの名前を設定して作成します。
-![Settings設定](../images/Google-Form-PSN-10.png)
+![Settings設定](images/Google-Form-PSN-10.png)
 
 ---
 
@@ -135,7 +135,7 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 | **isEmailValid** |
 | **isRegisted** |
 
-![Settings設定](../images/Google-Form-PSN-11.png)
+![Settings設定](images/Google-Form-PSN-11.png)
 
 > ✅ 追加したColumnを確認します。
 
@@ -144,16 +144,16 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 ### 3. Google Spreadsheet のGASを編集
 
 #### GASエディタを開く
-![Settings設定](../images/Google-Form-PSN-12.png)
+![Settings設定](images/Google-Form-PSN-12.png)
 
 #### Script設定
 
 GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-panelsearch-nanbyo.js` でScriptを設定します。
-![Settings設定](../images/Google-Form-PSN-13.png)  
+![Settings設定](images/Google-Form-PSN-13.png)  
 
-![Settings設定](../images/Google-Form-PSN-14.png)   
+![Settings設定](images/Google-Form-PSN-14.png)   
 
-![Settings設定](../images/Google-Form-PSN-15.png)  
+![Settings設定](images/Google-Form-PSN-15.png)  
 
 ##### 設定変数一覧
 
@@ -172,7 +172,7 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 
 ### 4. Triggerを設定する
 
-![Settings設定](../images/Google-Form-PSN-16.png)
+![Settings設定](images/Google-Form-PSN-16.png)
 
 ---
 
@@ -180,7 +180,7 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 
 Google Spreadsheetの画面に管理用MENUを追加します。
 
-![Settings設定](../images/Google-Form-PSN-17.png)
+![Settings設定](images/Google-Form-PSN-17.png)
 
 ##### 初回認証
 
@@ -188,12 +188,12 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 
 | 認証手順 | 画面 |
 |---|---|
-| 認証① | ![認証1](../images/Google-Form-PSN-18.png) |
-| 認証② | ![認証2](../images/Google-Form-PSN-19.png) |
-| 認証③ | ![認証3](../images/Google-Form-PSN-20.png) |
-| 認証④ | ![認証4](../images/Google-Form-PSN-21.png) |
+| 認証① | ![認証1](images/Google-Form-PSN-18.png) |
+| 認証② | ![認証2](images/Google-Form-PSN-19.png) |
+| 認証③ | ![認証3](images/Google-Form-PSN-20.png) |
+| 認証④ | ![認証4](images/Google-Form-PSN-21.png) |
 
-![onOpen](../images/Google-Form-PSN-22.png) 
+![onOpen](images/Google-Form-PSN-22.png) 
 
 > ✅ Menu用Triggerが作成されました。
 
@@ -204,9 +204,9 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 
 Google Form送信時のTriggerを作成します。
 
-![onOpen](../images/Google-Form-PSN-23.png)
+![onOpen](images/Google-Form-PSN-23.png)
 
-![onOpen](../images/Google-Form-PSN-24.png)
+![onOpen](images/Google-Form-PSN-24.png)
 
 ---
 
@@ -214,7 +214,7 @@ Google Form送信時のTriggerを作成します。
 
 Status Check Triggerを作成します。
 
-![onOpen](../images/Google-Form-PSN-25.png)
+![onOpen](images/Google-Form-PSN-25.png)
 
 ---
 
@@ -222,7 +222,7 @@ Status Check Triggerを作成します。
 
 管理者へNotificationメールを送信するTriggerを作成します。
 
-![onOpen](../images/Google-Form-PSN-26.png)
+![onOpen](images/Google-Form-PSN-26.png)
 
 ---
 
@@ -230,7 +230,7 @@ Status Check Triggerを作成します。
 
 ユーザー認証の有効期限をチェックするTriggerを作成します。
 
-![onOpen](../images/Google-Form-PSN-27.png)
+![onOpen](images/Google-Form-PSN-27.png)
 
 ---
 
@@ -246,17 +246,17 @@ Status Check Triggerを作成します。
 
 ### 1. 初めでユーザーGoogleFormより登録の例(管理者が存在しない場合)  
    (1) Panelsearch(nanbyo)各画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
-   ![図: ログインボタン](../images/Google-Form-PSN-28.png)  
+   ![図: ログインボタン](images/Google-Form-PSN-28.png)  
    
    (2) Google Formに記入して、Submitする  
-   ![図: フォーム入力例](../images/Google-Form-PSN-29.png)    
+   ![図: フォーム入力例](images/Google-Form-PSN-29.png)    
    
    (3) ユーザーがGoogleFormに記入したaffiliation email addressで、email authenticationを行い  
-   ![図: 認証メール](../images/Google-Form-PSN-30.png)    
-   ![図: 認証リンク](../images/Google-Form-PSN-31.png)    
+   ![図: 認証メール](images/Google-Form-PSN-30.png)    
+   ![図: 認証リンク](images/Google-Form-PSN-31.png)    
    
    (4) 管理者がGoogleSpreadsheetのメニュー機能より、ユーザーの登録は「承認」方法
-   ![図: 完了画面](../images/Google-Form-PSN-32.png)  
+   ![図: 完了画面](images/Google-Form-PSN-32.png)  
    
    ここまで、ユーザー登録は完了しました。PanelSearch NanbyoにユーザーLoginできます
 
