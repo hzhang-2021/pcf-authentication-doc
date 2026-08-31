@@ -9,7 +9,7 @@
 
 ## 一、システム仕組み
 
-![システムフロー図](../images/Google-Form-Common-0.PNG)
+![システムフロー図](images/Google-Form-Common-0.PNG)
 
 ### 処理フロー
 
@@ -40,10 +40,10 @@
 ### 1. Google Formを新規作成
 
 1. ご利用のGoogle AccountでログインしGoogleへアクセス,「Forms」というGoogle APPをクリック
-   ![Googleログイン](../images/Google-Form-Common-1.png)
+   ![Googleログイン](images/Google-Form-Common-1.png)
 
 2. 「Start a new form」をクリック
-   ![Forms作成](../images/Google-Form-Common-2.png)
+   ![Forms作成](images/Google-Form-Common-2.png)
 
 
 ---
@@ -51,14 +51,14 @@
 ### 2. Google Formの設定
 
 #### Settingsタブの設定
-![Form setting](../images/Google-Form-Common-3.png)  
+![Form setting](images/Google-Form-Common-3.png)  
 
 **Responses部分：**
 - 「Make this a quiz」は**オンにしない**でください
 
 **Presentation部分：**
 - Confirmation messageを編集する
-![Confirmation message](../images/Google-Form-Common-4.png)
+![Confirmation message](images/Google-Form-Common-4.png)
 
 
 ---
@@ -67,7 +67,7 @@
 
 「Questions」タブを選択し、FormのTitleを編集後、以下の順序で質問を追加します。
 
-![Questions作成](../images/Google-Form-Common-5.png)  
+![Questions作成](images/Google-Form-Common-5.png)  
 
 | # | Title | Required | Validation |
 |:-:|---|---|:---:|
@@ -82,7 +82,7 @@
 | 9 | Job title (native language) | ❌ OFF | ❌ NO |
 
 #### メールアドレス検証設定
-![メールアドレス検証設定](../images/Google-Form-Common-6.png)
+![メールアドレス検証設定](images/Google-Form-Common-6.png)
 
 「**Affiliation email**」フィールドについては、右下の三点マーク（⋮）より**Response validation**を設定します。
 
@@ -99,21 +99,21 @@
 ### 4. Google Form のPublish
 
 フォームを公開（Publish）します。
-![Publish](../images/Google-Form-Common-7.png)
+![Publish](images/Google-Form-Common-7.png)
 
 
 ---
 
 ### 5. Google Form のURLを取得
 Google FormのURLを表示して保存します。
-![フォームURL](../images/Google-Form-Common-8.png)  
+![フォームURL](images/Google-Form-Common-8.png)  
 > 📌 このURLを `.env` ファイルの `GOOGLE_FORM_URL_PCF` へ設定します。
 
 ---
 
 ### 6. URLからGoogle Form IDを取得
 
-![URLからGoogle Form IDを取得](../images/Google-Form-Common-9.png)  
+![URLからGoogle Form IDを取得](images/Google-Form-Common-9.png)  
 上のように、Google Form IDを取得
 
 ---
@@ -133,7 +133,7 @@ Google Form側で新規登録が発生すると、以下の流れで処理が行
 
 1. Google Formの編集画面を開き、「google form id」を記録
 
-   ![FormID確認](../images/Google-Form-Common-10.png)
+   ![FormID確認](images/Google-Form-Common-10.png)
 
 2. GAS編集画面を開く
 
@@ -146,7 +146,7 @@ Google Form側で新規登録が発生すると、以下の流れで処理が行
 
 4. 保存後、onSubmit Triggerを追加
 
-   ![GAS設定](../images/Google-Form-Common-11.png)
+   ![GAS設定](images/Google-Form-Common-11.png)
 
 
 ---
@@ -158,10 +158,10 @@ Google Form側で新規登録が発生すると、以下の流れで処理が行
 ### 1. Google Form連携Spreadsheetを新規作成
 
 フォームに関連するGoogle Spreadsheetを設定します。
-![Trigger追加](../images/Google-Form-Common-12.png)
+![Trigger追加](images/Google-Form-Common-12.png)
 
 Spreadsheetの名前を設定して作成します。
-![Spreadsheet連携](../images/Google-Form-Common-13.png)
+![Spreadsheet連携](images/Google-Form-Common-13.png)
 
 ---
 
@@ -169,7 +169,7 @@ Spreadsheetの名前を設定して作成します。
 
 Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラムを手動で設定します。
 
-![Spreadsheet命名](../images/Google-Form-Common-14.png)
+![Spreadsheet命名](images/Google-Form-Common-14.png)
 
 | 追加カラム名 |
 |---|
@@ -184,12 +184,12 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 ### 3. Google Spreadsheet のGASを編集
 
 #### GASエディタを開く
-![カラム追加](../images/Google-Form-Common-15.png)
+![カラム追加](images/Google-Form-Common-15.png)
 
 #### Script設定
 
 GASに、GithubにPUSHした `static/js/google-spreadsheet-common.js` でScriptを設定します。
-![GAS編集](../images/Google-Form-Common-16.png)
+![GAS編集](images/Google-Form-Common-16.png)
 
 ##### 設定変数一覧
 
@@ -202,21 +202,21 @@ GASに、GithubにPUSHした `static/js/google-spreadsheet-common.js` でScript�
 | `PBS_GOOGLEFORM_ID` | 二-5で記録したGoogle Form ID | — |
 
 ID設定例
-![GAS設定詳細](../images/Google-Form-Common-17.png)
+![GAS設定詳細](images/Google-Form-Common-17.png)
 
 > ⚠️ **注意：** Code内のCOLNOはSpreadsheetの各Columnの順番と一致させる必要があります。
 
 ---
 
 ### 4. Triggerを設定する
-![ID設定例](../images/Google-Form-Common-18.png)
+![ID設定例](images/Google-Form-Common-18.png)
 
 ---
 
 #### ① onOpen Trigger（メニュー追加用）
 
 Google Spreadsheetの画面に管理用MENUを追加します。
-![Onopen Trigger](../images/Google-Form-Common-19.png)
+![Onopen Trigger](images/Google-Form-Common-19.png)
 
 ##### 初回認証
 
@@ -224,13 +224,13 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 
 | 認証手順 | 画面 |
 |---|---|
-| 認証① | ![認証1](../images/Google-Form-Common-20.png) |
-| 認証② | ![認証2](../images/Google-Form-Common-21.png) |
-| 認証③ | ![認証3](../images/Google-Form-Common-22.png) |
-| 認証④ | ![認証4](../images/Google-Form-Common-23.png) |
+| 認証① | ![認証1](images/Google-Form-Common-20.png) |
+| 認証② | ![認証2](images/Google-Form-Common-21.png) |
+| 認証③ | ![認証3](images/Google-Form-Common-22.png) |
+| 認証④ | ![認証4](images/Google-Form-Common-23.png) |
 
 
-![Form onOpen](../images/Google-Form-Common-24.png)
+![Form onOpen](images/Google-Form-Common-24.png)
 > ✅ Menu用Triggerが作成されました。
 
 ---
@@ -238,15 +238,15 @@ Google Spreadsheetの画面に管理用MENUを追加します。
 #### ② on Form Submit Trigger
 
 Google Form側で新規登録があった場合に実行されます。
-![Form Submit Trigger 1](../images/Google-Form-Common-25.png) 
+![Form Submit Trigger 1](images/Google-Form-Common-25.png) 
 
-![Form Submit Trigger 1](../images/Google-Form-Common-26.png)
+![Form Submit Trigger 1](images/Google-Form-Common-26.png)
 
 
 ---
 
 #### ③ Check Status Trigger（定期チェック用）
-![check status](../images/Google-Form-Common-27.png)
+![check status](images/Google-Form-Common-27.png)
 このTriggerは、定期的にPubcasefinderサーバからユーザーの状態変更を取得し処理を行います。
 
 **処理内容：**
@@ -267,7 +267,7 @@ Google Form側で新規登録があった場合に実行されます。
 
 認証の有効期限をチェックするTriggerです。
 
-![Expiration Check Trigger](../images/Google-Form-Common-28.png)
+![Expiration Check Trigger](images/Google-Form-Common-28.png)
 
 ---
 
@@ -282,17 +282,17 @@ Google Form側で新規登録があった場合に実行されます。
 
 ### 1. ユーザーGoogleFormよりPubcasefinder共通用版登録の例  
    (1) DiseaseSearch、CaseSharing、Panelsearch各サービス画面に、「Login」ボタンで、GoogleSignUpへリンクをあけます  
-   ![図: ログインボタン](../images/Google-Form-Common-29.png)  
+   ![図: ログインボタン](images/Google-Form-Common-29.png)  
    
    (2) Google Formに記入して、Submitする  
-   ![図: フォーム入力例](../images/Google-Form-Common-30.png)    
+   ![図: フォーム入力例](images/Google-Form-Common-30.png)    
    
    (3) ユーザーがGoogleFormに記入したaffiliation email addressで、email authenticationを行い  
-   ![図: 認証メール](../images/Google-Form-Common-31.png)    
-   ![図: 認証リンク](../images/Google-Form-Common-32.png)    
+   ![図: 認証メール](images/Google-Form-Common-31.png)    
+   ![図: 認証リンク](images/Google-Form-Common-32.png)    
    
    (4) 完了  
-   ![図: 完了画面](../images/Google-Form-Common-33.png)  
+   ![図: 完了画面](images/Google-Form-Common-33.png)  
 
 ### 2. 指定ユーザーに管理者権限を付与する方法
 
