@@ -187,3 +187,6 @@ docker compose down
 ```
 If `.env` or `docker-compose.yml` is changed, delete the container and start it with `up -d`
 
+
+## Configuration environment
+For more information about configuration of Google Authentication , [Login Section](docs/README-login.md)
