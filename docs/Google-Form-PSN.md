@@ -132,7 +132,9 @@
 フォームのURLを表示して保存します。
 ![Settings設定](images/Google-Form-PSN-8.png)
 
-> 📌 このURLを `.env` ファイルのGOOGLE_FORM_URL_PSNへ設定します。
+Google FormのURLからGoogle Form のIDを取って、後でGoogle SpreadSheetの GASへ設定する。
+
+> 📌 このGoogle FormのURLを システムの`.env` ファイルのGOOGLE_FORM_URL_PSNへ設定します。
 
 ---
 
