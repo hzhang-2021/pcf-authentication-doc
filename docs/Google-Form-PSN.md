@@ -101,14 +101,18 @@
 
 static/js/panelsearch_nanbyo/google-form-panelsearch-nanbyo.jsのソースで以下のように設定する
 
+![GAS codeを設定](images/Google-Form-PSN-34.png)
+
+上の画面に、以下の項目を設定する。
 | 設定項目 | 値 |
+|---|---|
 | PBS_SPREADSHEET_ID | Google Spreadsheet ID |
 | PBS_SPREADSHEET_DATA_NAME | Google Spreadsheet のsheet name |
 | COLNO_TIMESTAMP | the column no of timestamp in google spreadsheet |
 | COLNO_GOOGLE_ID | the column no of Google ID in google spreadsheet |
 | COLNO_RESPONSEID | the column no of Response ID in google spreadsheet |
 
-![GAS codeを設定](images/Google-Form-PSN-34.png)
+
 
 
 以下のように、Trigger編集画面をOpenします。
