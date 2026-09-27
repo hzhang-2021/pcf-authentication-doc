@@ -176,11 +176,10 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 #### Script設定
 
 GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-panelsearch-nanbyo.js` でScriptを設定します。
-![Settings設定](images/Google-Form-PSN-13.png)  
 
 ![Settings設定](images/Google-Form-PSN-14.png)   
 
-![Settings設定](images/Google-Form-PSN-15.png)  
+![Settings設定](images/Google-Form-PSN-38.png)  
 
 ##### 設定変数一覧
 
@@ -190,6 +189,7 @@ GASに、GithubにPUSHした `static/js/panelsearch_nanbyo/google-spreadsheet-pa
 | `PUBCASEFINDER_WEB_SERVER_SECRET_KEY` | サーバー側`.env`の`GOOGLE_FORM_SECRET_KEY`と一致させる | — |
 | `PBS_SPREADSHEET_ID` | SpreadsheetのID（URLの赤色部分） | `1kss4hHDajL0dxoeXO8qO8hpUruElcsdt_61RNMhqvFo` |
 | `PBS_SPREADSHEET_DATA_NAME` | Spreadsheetのシート名 | `PubCaseFinder-PanelSearch-Users-Sheet1` |
+| `PBS_SPREADSHEET_ID` | Google FormのID（Google form のURLから） | `*******` |
 | `COLNO_XXX` | Spreadsheetの各Columnの順番と一致させる | — |
 | `NOTIFICATION_MAIL_ACCOUNT` | 通知用管理者Emailアドレス | — |
 
