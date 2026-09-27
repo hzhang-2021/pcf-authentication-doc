@@ -160,8 +160,9 @@ Spreadsheetに自動生成されたカラムの後ろに、以下の追加カラ
 | **AuthenticationCode** |
 | **isEmailValid** |
 | **isRegisted** |
+| **ResponseID** |
 
-![Settings設定](images/Google-Form-PSN-11.png)
+![Settings設定](images/Google-Form-PSN-37.png)
 
 > ✅ 追加したColumnを確認します。
 
