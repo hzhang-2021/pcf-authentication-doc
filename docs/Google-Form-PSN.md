@@ -94,14 +94,36 @@
 
 ---
 
-### 4. Google Form のPublish
+### 4. Google Form のTriggerの作成
+
+以下のように、GAS編集画面をOpenします。
+![GASを開ける](images/Google-Form-PSN-33.png)
+
+static/js/panelsearch_nanbyo/google-form-panelsearch-nanbyo.jsのソースで以下のように設定する
+| 設定項目 | 値 |
+| PBS_SPREADSHEET_ID | Google Spreadsheet ID |
+| PBS_SPREADSHEET_DATA_NAME | Google Spreadsheet のsheet name |
+| COLNO_TIMESTAMP | the column no of timestamp in google spreadsheet |
+| COLNO_GOOGLE_ID | the column no of Google ID in google spreadsheet |
+| COLNO_RESPONSEID | the column no of Response ID in google spreadsheet |
+![GAS codeを設定](images/Google-Form-PSN-34.png)
+
+以下のように、Trigger編集画面をOpenします。
+![Triggerを開ける](images/Google-Form-PSN-35.png)
+
+以下のように、On form submmit Triggerを設定します。
+![Triggerを作る](images/Google-Form-PSN-36.png)
+
+---
+
+### 5. Google Form のPublish
 
 フォームを公開（Publish）します。
 ![Settings設定](images/Google-Form-PSN-7.png)
 
 ---
 
-### 5. Google FormのURL取得
+### 6. Google FormのURL取得
 
 フォームのURLを表示して保存します。
 ![Settings設定](images/Google-Form-PSN-8.png)
