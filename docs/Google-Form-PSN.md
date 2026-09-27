@@ -96,14 +96,13 @@
 
 ### 4. Google Form のTriggerの作成
 
-以下のように、GAS編集画面をOpenします。
+(1)以下のように、GAS編集画面をOpenします。
 ![GASを開ける](images/Google-Form-PSN-33.png)
 
-static/js/panelsearch_nanbyo/google-form-panelsearch-nanbyo.jsのソースで以下のように設定する
-
+(2)static/js/panelsearch_nanbyo/google-form-panelsearch-nanbyo.jsのソースで,以下のように設定する
 ![GAS codeを設定](images/Google-Form-PSN-34.png)
 
-上の画面に、以下の項目を設定する。
+(3)上の画面に、以下の項目を設定する。
 | 設定項目 | 値 |
 |---|---|
 | PBS_SPREADSHEET_ID | Google Spreadsheet ID |
@@ -112,16 +111,11 @@ static/js/panelsearch_nanbyo/google-form-panelsearch-nanbyo.jsのソースで以
 | COLNO_GOOGLE_ID | the column no of Google ID in google spreadsheet |
 | COLNO_RESPONSEID | the column no of Response ID in google spreadsheet |
 
-
-
-
-以下のように、Trigger編集画面をOpenします。
-
+(4)以下のように、Trigger編集画面をOpenします。
 ![Triggerを開ける](images/Google-Form-PSN-35.png)
 
 
-以下のように、On form submmit Triggerを設定します。
-
+(5)以下のように、On form submmit Triggerを設定します。
 ![Triggerを作る](images/Google-Form-PSN-36.png)
 
 ---
